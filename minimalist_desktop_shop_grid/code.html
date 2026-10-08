@@ -1,0 +1,350 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Minimalist Apparel Catalog</title>
+<!-- IBM Plex Mono Font -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script data-purpose="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            mono: ['"IBM Plex Mono"', 'monospace'],
+          },
+          colors: {
+            brandBlack: '#000000',
+            brandGrey: '#C4C4C4',
+            footerGrey: '#777777',
+          }
+        }
+      }
+    }
+  </script>
+<!-- Typography and Base Styles -->
+<style data-purpose="typography">
+    body {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      color: #000000;
+      background-color: #FFFFFF;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  </style>
+<!-- Layout Styles -->
+<style data-purpose="layout">
+    /* Remove default focus outlines for a strictly minimal visual */
+    a:focus-visible, button:focus-visible {
+      outline: 1px solid #000000;
+    }
+  </style>
+</head>
+<body class="bg-white text-black min-h-screen flex flex-col items-center">
+<!-- BEGIN: MainHeader -->
+<header class="fixed top-0 left-0 right-0 h-[64px] bg-white z-50 flex items-center justify-between px-[24px]" data-purpose="top-navigation">
+<!-- Left Navigation Element: Thin '+' icon (20px) -->
+<div class="flex items-center w-8">
+<button aria-label="Open Menu" class="text-black inline-flex items-center justify-center p-0 m-0 border-0 bg-transparent cursor-pointer" type="button">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="square" stroke-width="1.25" viewBox="0 0 20 20" width="20">
+<line x1="10" x2="10" y1="2" y2="18"></line>
+<line x1="2" x2="18" y1="10" y2="10"></line>
+</svg>
+</button>
+</div>
+<!-- Center Navigation Element: Category List -->
+<nav aria-label="Categories" class="flex items-center space-x-[24px] uppercase tracking-normal">
+<a class="text-[#000000]" href="#">ALL</a>
+<a class="text-[#C4C4C4] hover:text-[#000000] transition-colors" href="#">BAGS</a>
+<a class="text-[#C4C4C4] hover:text-[#000000] transition-colors" href="#">SHIRTS</a>
+<a class="text-[#C4C4C4] hover:text-[#000000] transition-colors" href="#">T-SHIRTS</a>
+<a class="text-[#C4C4C4] hover:text-[#000000] transition-colors" href="#">PANTS</a>
+<a class="text-[#C4C4C4] hover:text-[#000000] transition-colors" href="#">SHOES</a>
+<a class="text-[#C4C4C4] hover:text-[#000000] transition-colors" href="#">ACCESSORIES</a>
+</nav>
+<!-- Right Navigation Element: Shopping Bag Outline Icon -->
+<div class="flex items-center justify-end w-8">
+<button aria-label="View Shopping Bag" class="text-black inline-flex items-center justify-center p-0 m-0 border-0 bg-transparent cursor-pointer" type="button">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.25" viewBox="0 0 18 20" width="18">
+<path d="M1 5H17V19H1V5Z"></path>
+<path d="M5.5 7V4C5.5 2.34315 6.84315 1 8.5 1H9.5C11.1569 1 12.5 2.34315 12.5 4V7"></path>
+</svg>
+</button>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: ProductGridSection -->
+<main class="w-full max-w-[1440px] px-[24px] pt-[96px] flex-1" data-purpose="product-catalog">
+<!-- 6 Column Grid: Row gap 56px, Col gap 24px -->
+<div class="grid grid-cols-6 gap-x-[24px] gap-y-[56px] w-full">
+<!-- Product 1: TS-03 -->
+<article class="flex flex-col items-center" data-purpose="product-cell">
+<div class="w-full aspect-square flex items-center justify-center bg-white">
+<svg class="w-4/5 h-4/5 max-h-[160px] text-neutral-900 fill-current" viewBox="0 0 100 100">
+<!-- Tri-pack T-shirt graphic -->
+<path d="M30 25 L40 22 C43 25 57 25 60 22 L70 25 L65 37 L59 34 L59 75 L41 75 L41 34 L35 37 Z" opacity="0.3"></path>
+<path d="M25 29 L35 26 C38 29 52 29 55 26 L65 29 L60 41 L54 38 L54 79 L36 79 L36 38 L30 41 Z" opacity="0.6"></path>
+<path d="M20 33 L30 30 C33 33 47 33 50 30 L60 33 L55 45 L49 42 L49 83 L31 83 L31 42 L25 45 Z"></path>
+</svg>
+</div>
+<div class="mt-[8px] text-center">
+<p class="text-black">TS-03</p>
+<p class="text-black">R899</p>
+</div>
+</article>
+<!-- Product 2: LS-03 -->
+<article class="flex flex-col items-center" data-purpose="product-cell">
+<div class="w-full aspect-square flex items-center justify-center bg-white">
+<svg class="w-4/5 h-4/5 max-h-[160px] text-neutral-900 fill-current" viewBox="0 0 100 100">
+<!-- Long sleeve boxy top -->
+<path d="M12 40 L30 30 L40 27 C44 30 56 30 60 27 L70 30 L88 40 L84 52 L73 45 L73 78 L27 78 L27 45 L16 52 Z"></path>
+</svg>
+</div>
+<div class="mt-[8px] text-center">
+<p class="text-black">LS-03</p>
+<p class="text-black">R1 199</p>
+</div>
+</article>
+<!-- Product 3: HD-03 -->
+<article class="flex flex-col items-center" data-purpose="product-cell">
+<div class="w-full aspect-square flex items-center justify-center bg-white">
+<svg class="w-4/5 h-4/5 max-h-[160px] text-neutral-900 fill-current" viewBox="0 0 100 100">
+<!-- Zip Hoodie graphic -->
+<path d="M41 18 C41 18 36 24 33 31 L20 44 L25 55 L32 46 L32 82 L68 82 L68 46 L75 55 L80 44 L67 31 C64 24 59 18 59 18 C59 18 50 16 41 18 Z"></path>
+<path d="M49 33 L49 82 L51 82 L51 33 Z" fill="#222"></path>
+</svg>
+</div>
+<div class="mt-[8px] text-center">
+<p class="text-black">HD-03</p>
+<p class="text-black">R2 499</p>
+</div>
+</article>
+<!-- Product 4: WB-01 -->
+<article class="flex flex-col items-center" data-purpose="product-cell">
+<div class="w-full aspect-square flex items-center justify-center bg-white">
+<svg class="w-4/5 h-4/5 max-h-[160px] text-neutral-900 fill-current" viewBox="0 0 100 100">
+<!-- Windbreaker jacket graphic -->
+<path d="M42 16 C38 20 33 28 30 32 L15 48 L22 56 L29 48 L28 80 L72 80 L71 48 L78 56 L85 48 L70 32 C67 28 62 20 58 16 Z"></path>
+<line stroke="#222" stroke-width="1.5" x1="50" x2="50" y1="26" y2="80"></line>
+</svg>
+</div>
+<div class="mt-[8px] text-center">
+<p class="text-black">WB-01</p>
+<p class="text-black">R2 899</p>
+</div>
+</article>
+<!-- Product 5: SH-01 -->
+<article class="flex flex-col items-center" data-purpose="product-cell">
+<div class="w-4/5 aspect-square flex items-center justify-center bg-white">
+<svg class="w-3/4 h-3/4 max-h-[140px] text-neutral-900 fill-current" viewBox="0 0 100 100">
+<!-- Nylon shorts graphic -->
+<path d="M26 30 L74 30 L78 68 L58 70 L50 48 L42 70 L22 68 Z"></path>
+</svg>
+</div>
+<div class="mt-[8px] text-center">
+<p class="text-black">SH-01</p>
+<p class="text-black">R999</p>
+</div>
+</article>
+<!-- Product 6: SP-06 -->
+<article class="flex flex-col items-center" data-purpose="product-cell">
+<div class="w-full aspect-square flex items-center justify-center bg-white">
+<svg class="w-4/5 h-4/5 max-h-[160px] text-neutral-900 fill-current" viewBox="0 0 100 100">
+<!-- Cuffed Sweatpants graphic -->
+<path d="M33 16 L67 16 L74 76 L63 80 L50 36 L37 80 L26 76 Z"></path>
+</svg>
+</div>
+<div class="mt-[8px] text-center">
+<p class="text-black">SP-06</p>
+<p class="text-black">R1 699</p>
+</div>
+</article>
+<!-- Product 7: PT-04 -->
+<article class="flex flex-col items-center" data-purpose="product-cell">
+<div class="w-full aspect-square flex items-center justify-center bg-white">
+<svg class="w-4/5 h-4/5 max-h-[160px] text-neutral-900 fill-current" viewBox="0 0 100 100">
+<!-- Straight leg trousers graphic -->
+<path d="M30 15 L70 15 L68 85 L53 85 L50 34 L47 85 L32 85 Z"></path>
+</svg>
+</div>
+<div class="mt-[8px] text-center">
+<p class="text-black">PT-04</p>
+<p class="text-black">R1 899</p>
+</div>
+</article>
+<!-- Product 8: PT-05 -->
+<article class="flex flex-col items-center" data-purpose="product-cell">
+<div class="w-full aspect-square flex items-center justify-center bg-white">
+<svg class="w-4/5 h-4/5 max-h-[160px] text-neutral-900 fill-current" viewBox="0 0 100 100">
+<!-- Wide denim/canvas pants graphic -->
+<path d="M28 15 L72 15 L76 85 L56 85 L50 32 L44 85 L24 85 Z"></path>
+</svg>
+</div>
+<div class="mt-[8px] text-center">
+<p class="text-black">PT-05</p>
+<p class="text-black">R2 199</p>
+</div>
+</article>
+<!-- Product 9: TT-06 -->
+<article class="flex flex-col items-center" data-purpose="product-cell">
+<div class="w-full aspect-square flex items-center justify-center bg-white">
+<svg class="w-4/5 h-4/5 max-h-[160px] text-neutral-900 fill-current" viewBox="0 0 100 100">
+<!-- Ribbed tank top 3-pack graphic -->
+<path d="M38 24 L42 24 L45 32 L55 32 L58 24 L62 24 L60 38 L62 76 L38 76 L40 38 Z" opacity="0.3"></path>
+<path d="M33 27 L37 27 L40 35 L50 35 L53 27 L57 27 L55 41 L57 79 L33 79 L35 41 Z" opacity="0.6"></path>
+<path d="M28 30 L32 30 L35 38 L45 38 L48 30 L52 30 L50 44 L52 82 L28 82 L30 44 Z"></path>
+</svg>
+</div>
+<div class="mt-[8px] text-center">
+<p class="text-black">TT-06</p>
+<p class="text-black">R799</p>
+</div>
+</article>
+<!-- Product 10: BX-01 -->
+<article class="flex flex-col items-center" data-purpose="product-cell">
+<div class="w-full aspect-square flex items-center justify-center bg-white">
+<svg class="w-4/5 h-4/5 max-h-[160px] text-neutral-900 fill-current" viewBox="0 0 100 100">
+<!-- Boxer pack graphic -->
+<path d="M32 28 L78 28 L82 66 L64 68 L56 50 L48 68 L30 66 Z" opacity="0.4"></path>
+<path d="M20 34 L68 34 L72 74 L54 76 L46 56 L38 76 L18 74 Z"></path>
+</svg>
+</div>
+<div class="mt-[8px] text-center">
+<p class="text-black">BX-01</p>
+<p class="text-black">R599</p>
+</div>
+</article>
+<!-- Product 11: SK-01 -->
+<article class="flex flex-col items-center" data-purpose="product-cell">
+<div class="w-full aspect-square flex items-center justify-center bg-white">
+<svg class="w-4/5 h-4/5 max-h-[160px] text-neutral-900 fill-current" viewBox="0 0 100 100">
+<!-- Ribbed socks set graphic -->
+<path d="M52 24 L64 24 L64 60 L74 68 L70 76 L52 64 Z" opacity="0.3"></path>
+<path d="M42 27 L54 27 L54 63 L64 71 L60 79 L42 67 Z" opacity="0.6"></path>
+<path d="M32 30 L44 30 L44 66 L54 74 L50 82 L32 70 Z"></path>
+</svg>
+</div>
+<div class="mt-[8px] text-center">
+<p class="text-black">SK-01</p>
+<p class="text-black">R349</p>
+</div>
+</article>
+<!-- Product 12: AB-01 -->
+<article class="flex flex-col items-center" data-purpose="product-cell">
+<div class="w-full aspect-square flex items-center justify-center bg-white">
+<svg class="w-4/5 h-4/5 max-h-[160px] text-neutral-900 fill-current" viewBox="0 0 100 100">
+<!-- Tactical combat boot graphic -->
+<path d="M40 20 L58 20 L58 56 L78 64 C82 66 84 72 82 76 L28 76 L28 62 L40 54 Z"></path>
+</svg>
+</div>
+<div class="mt-[8px] text-center">
+<p class="text-black">AB-01</p>
+<p class="text-black">R3 499</p>
+</div>
+</article>
+<!-- Product 13: SN-02 -->
+<article class="flex flex-col items-center" data-purpose="product-cell">
+<div class="w-full aspect-square flex items-center justify-center bg-white">
+<svg class="w-4/5 h-4/5 max-h-[160px] text-neutral-900 fill-current" viewBox="0 0 100 100">
+<!-- Trail runner sneaker graphic -->
+<path d="M18 64 C22 55 35 48 50 48 L68 50 L84 62 L82 72 L16 72 Z"></path>
+<path d="M14 72 L84 72 L82 77 L16 77 Z" fill="#333"></path>
+</svg>
+</div>
+<div class="mt-[8px] text-center">
+<p class="text-black">SN-02</p>
+<p class="text-black">R2 699</p>
+</div>
+</article>
+<!-- Product 14: SN-04 -->
+<article class="flex flex-col items-center" data-purpose="product-cell">
+<div class="w-full aspect-square flex items-center justify-center bg-white">
+<svg class="w-4/5 h-4/5 max-h-[160px] text-neutral-900 fill-current" viewBox="0 0 100 100">
+<!-- Minimal low sneaker graphic -->
+<path d="M18 66 C20 58 32 54 48 54 L72 56 L84 66 L82 74 L16 74 Z"></path>
+<path d="M15 74 L83 74 L82 77 L16 77 Z" fill="#222"></path>
+</svg>
+</div>
+<div class="mt-[8px] text-center">
+<p class="text-black">SN-04</p>
+<p class="text-black">R2 199</p>
+</div>
+</article>
+<!-- Product 15: SL-01 -->
+<article class="flex flex-col items-center" data-purpose="product-cell">
+<div class="w-full aspect-square flex items-center justify-center bg-white">
+<svg class="w-4/5 h-4/5 max-h-[160px] text-neutral-900 fill-current" viewBox="0 0 100 100">
+<!-- Molded slide graphic -->
+<path d="M22 68 C24 58 38 52 56 52 C70 52 78 58 80 68 L78 74 L20 74 Z"></path>
+<path d="M18 74 L80 74 L78 78 L20 78 Z" fill="#222"></path>
+</svg>
+</div>
+<div class="mt-[8px] text-center">
+<p class="text-black">SL-01</p>
+<p class="text-black">R899</p>
+</div>
+</article>
+<!-- Product 16: BG-01 -->
+<article class="flex flex-col items-center" data-purpose="product-cell">
+<div class="w-full aspect-square flex items-center justify-center bg-white">
+<svg class="w-4/5 h-4/5 max-h-[160px] text-neutral-900 fill-current" viewBox="0 0 100 100">
+<!-- Roll-top technical tote/dry bag -->
+<path d="M26 30 L74 30 L76 34 L72 80 L28 80 L24 34 Z"></path>
+<line stroke="#000" stroke-width="3" x1="22" x2="78" y1="30" y2="30"></line>
+</svg>
+</div>
+<div class="mt-[8px] text-center">
+<p class="text-black">BG-01</p>
+<p class="text-black">R1 499</p>
+</div>
+</article>
+<!-- Product 17: BP-02 -->
+<article class="flex flex-col items-center" data-purpose="product-cell">
+<div class="w-full aspect-square flex items-center justify-center bg-white">
+<svg class="w-4/5 h-4/5 max-h-[160px] text-neutral-900 fill-current" viewBox="0 0 100 100">
+<!-- Minimalist dome daypack backpack -->
+<path d="M46 18 C46 16 54 16 54 18" fill="none" stroke="#111" stroke-width="2"></path>
+<path d="M28 82 L28 50 C28 32 38 22 50 22 C62 22 72 32 72 50 L72 82 Z"></path>
+</svg>
+</div>
+<div class="mt-[8px] text-center">
+<p class="text-black">BP-02</p>
+<p class="text-black">R1 899</p>
+</div>
+</article>
+<!-- Product 18: SG-01 -->
+<article class="flex flex-col items-center" data-purpose="product-cell">
+<div class="w-full aspect-square flex items-center justify-center bg-white">
+<svg class="w-4/5 h-4/5 max-h-[160px] text-neutral-900 fill-current" viewBox="0 0 100 100">
+<!-- Wrap-around minimalist eyewear -->
+<path d="M18 50 C18 42 32 40 45 42 L50 44 L55 42 C68 40 82 42 82 50 C80 58 66 60 54 58 L50 54 L46 58 C34 60 20 58 18 50 Z"></path>
+</svg>
+</div>
+<div class="mt-[8px] text-center">
+<p class="text-black">SG-01</p>
+<p class="text-black">R1 299</p>
+</div>
+</article>
+</div>
+</main>
+<!-- END: ProductGridSection -->
+<!-- BEGIN: MainFooter -->
+<footer class="w-full mt-[64px] pb-[64px] flex justify-center" data-purpose="site-footer">
+<!-- Centered uppercase footer navigation in 12px IBM Plex Mono -->
+<nav aria-label="Footer Navigation" class="flex items-center space-x-[32px] text-[12px] leading-[16px] text-[#777777] uppercase tracking-normal">
+<a class="hover:text-black transition-colors" href="#">CONTACT</a>
+<a class="hover:text-black transition-colors" href="#">TERMS</a>
+<a class="hover:text-black transition-colors" href="#">PRIVACY</a>
+<a class="hover:text-black transition-colors" href="#">ACCESSIBILITY</a>
+<a class="hover:text-black transition-colors" href="#">COOKIES</a>
+<a class="hover:text-black transition-colors" href="#">ORDER STATUS</a>
+</nav>
+</footer>
+<!-- END: MainFooter -->
+</body></html>

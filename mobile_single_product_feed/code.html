@@ -1,0 +1,105 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Mobile Single-Product Feed</title>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: IBM Plex Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&amp;display=swap" rel="stylesheet">
+<style data-purpose="typography">
+    body, * {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  </style>
+<style data-purpose="viewport-frames">
+    /* Precise dimensions for mobile viewports */
+    .mobile-screen {
+      width: 390px;
+      height: 844px;
+      position: relative;
+      background-color: #FFFFFF;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    
+    /* Product image container */
+    .product-square {
+      width: 390px;
+      height: 390px;
+    }
+
+    /* Custom SVG line styling for minimalist raw aesthetic */
+    .icon-stroke {
+      stroke: #000000;
+      stroke-width: 1.25;
+      fill: none;
+      stroke-linecap: square;
+      stroke-linejoin: miter;
+    }
+  </style>
+</head>
+<body class="bg-white min-h-screen flex items-center justify-center p-0 md:p-8 select-none">
+<!-- BEGIN: FramesContainer -->
+<!-- Displays the two mobile screens side by side with gap -->
+<main class="flex flex-row flex-wrap items-center justify-center gap-12" data-purpose="mobile-screens-presentation">
+<!-- BEGIN: Frame1 - Single Product View -->
+<section class="mobile-screen flex flex-col justify-between" data-purpose="single-product-initial-view">
+<!-- Screen Header (56px high, pure white) -->
+<header class="h-[56px] w-full flex items-center justify-between px-4 z-20 bg-white" data-purpose="screen-header"><!-- Back Navigation (< arrow) -->
+<button aria-label="Back" class="w-6 h-6 flex items-center justify-center focus:outline-none flex-shrink-0" type="button">
+<svg class="w-5 h-5 icon-stroke" viewBox="0 0 24 24">
+<polyline points="15 19 8 12 15 5"></polyline>
+</svg>
+</button>
+<!-- Horizontal Category Navigation -->
+<nav aria-label="Categories" class="flex items-center overflow-x-auto mx-3 space-x-5 text-[12px] tracking-widest uppercase flex-1 whitespace-nowrap [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden" style="scrollbar-width: none;">
+<span class="text-[#000000] cursor-pointer font-normal">ALL</span>
+<span class="text-[#C4C4C4] cursor-pointer font-normal">BAGS</span>
+<span class="text-[#C4C4C4] cursor-pointer font-normal">SHIRTS</span>
+<span class="text-[#C4C4C4] cursor-pointer font-normal">T-SHIRTS</span>
+<span class="text-[#C4C4C4] cursor-pointer font-normal">PANTS</span>
+<span class="text-[#C4C4C4] cursor-pointer font-normal">SHOES</span>
+<span class="text-[#C4C4C4] cursor-pointer font-normal">ACCESSORIES</span>
+</nav>
+<!-- Cart Icon -->
+<button aria-label="Cart" class="w-6 h-6 flex items-center justify-center focus:outline-none flex-shrink-0" type="button">
+<svg class="w-5 h-5 icon-stroke" viewBox="0 0 24 24">
+<path d="M6 7v13h12V7H6z"></path>
+<path d="M9 9V5a3 3 0 0 1 6 0v4"></path>
+</svg>
+</button></header>
+<!-- Center Product Image (390px x 390px square) -->
+<div class="product-square flex items-center justify-center mx-auto" data-purpose="product-image-container">
+<!-- WB-01 Product Representation (Minimalist Zip Jacket silhouette) -->
+<svg class="w-64 h-64" data-purpose="jacket-vector" fill="none" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<!-- Hood / Neck -->
+<path d="M85 38C85 30 115 30 115 38V48H85V38Z" fill="#000000"></path>
+<!-- Shoulders & Torso -->
+<path d="M42 66L82 48H118L158 66L150 148H126L126 138L100 138L100 148H74L74 138L50 148L42 66Z" fill="#000000"></path>
+<!-- Sleeves Details -->
+<path d="M42 66L24 130L44 134L60 76" fill="#000000"></path>
+<path d="M158 66L176 130L156 134L140 76" fill="#000000"></path>
+<!-- Zipper Line -->
+<line stroke="#FFFFFF" stroke-width="1.5" x1="100" x2="100" y1="48" y2="138"></line>
+</svg>
+</div>
+<!-- Bottom Info (Centered, 48px from bottom edge) -->
+<footer class="w-full text-center pb-[48px]" data-purpose="product-info">
+<p class="text-[16px] leading-[24px] text-black tracking-normal">WB-01</p>
+<p class="text-[16px] leading-[24px] text-black tracking-normal">R2 899</p>
+</footer>
+</section>
+<!-- END: Frame1 -->
+<!-- BEGIN: Frame2 - Scrolled State View -->
+
+<!-- END: Frame2 -->
+</main>
+<!-- END: FramesContainer -->
+
+
+</body></html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>SEPARATE TRACK HOODY - Product Details</title>
+<!-- Load Tailwind CSS v3 with forms and container queries plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script data-purpose="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brick: '#8E2B1C',
+          },
+          fontFamily: {
+            sans: ['Arial', 'Helvetica', 'sans-serif'],
+            mono: ['"IBM Plex Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-resets">
+    /* Global reset for brutalist aesthetic: strictly square edges everywhere */
+    *, *::before, *::after {
+      border-radius: 0 !important;
+    }
+    body {
+      background-color: #8E2B1C;
+      color: #FFFFFF;
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+  </style>
+<style data-purpose="layout-tweaks">
+    /* Custom styling for standard select arrow overrides */
+    select.custom-select {
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='square' stroke-linejoin='miter'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-size: 16px;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-white text-black flex flex-col justify-between selection:bg-black selection:text-white" style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);">
+<!-- BEGIN: SiteHeader -->
+<header class="w-full h-[64px] flex items-center justify-between px-[24px] z-50 select-none" data-purpose="main-header">
+<!-- Back arrow -->
+<a aria-label="Back" class="inline-flex items-center justify-center text-black hover:opacity-75 transition-opacity" href="#">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" viewBox="0 0 24 24" width="24">
+<polyline points="15 18 9 12 15 6"></polyline>
+</svg>
+</a>
+<!-- Center Navigation Menu -->
+<nav class="hidden md:flex items-center space-x-6 lg:space-x-8 text-sm font-bold tracking-wider text-black" data-purpose="category-nav">
+<a class="hover:underline underline-offset-4" href="#">ALL</a>
+<a class="hover:underline underline-offset-4" href="#">BAGS</a>
+<a class="hover:underline underline-offset-4" href="#">SHIRTS</a>
+<a class="hover:underline underline-offset-4" href="#">T-SHIRTS</a>
+<a class="hover:underline underline-offset-4" href="#">PANTS</a>
+<a class="hover:underline underline-offset-4" href="#">SHOES</a>
+<a class="hover:underline underline-offset-4" href="#">ACCESSORIES</a>
+</nav>
+<!-- Shopping Bag Icon -->
+<a aria-label="Shopping Bag" class="inline-flex items-center justify-center text-black hover:opacity-75 transition-opacity" href="#">
+<svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" viewBox="0 0 24 24" width="22">
+<path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+<line x1="3" x2="21" y1="6" y2="6"></line>
+<path d="M16 10a4 4 0 0 1-8 0"></path>
+</svg>
+</a>
+</header>
+<!-- END: SiteHeader -->
+<!-- BEGIN: MainContent -->
+<main class="flex-1 w-full max-w-[1440px] mx-auto px-6 lg:px-12 py-6 flex items-center" data-purpose="product-view">
+<div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+<!-- BEGIN: ProductMediaGallery (58% width approx -> 7 cols) -->
+<section class="lg:col-span-7 flex flex-col items-center justify-center relative w-full" data-purpose="media-gallery">
+<!-- Main Large Product Photo Area -->
+<div class="relative w-full max-w-[580px] h-[520px] lg:h-[560px] flex items-center justify-center p-4">
+<!-- Hoodie Main Cutout Image -->
+<img alt="Separate Track Hoody - Front View" class="max-h-full max-w-full object-contain filter drop-shadow-md select-none pointer-events-none" id="main-product-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYne9kL7n8annCtdbe_U3iYcnMARm0eoszurvEdqmjeIAA7TPqZr0U0jDHhaIKN9rEkSlKcMTupUYKClsGAhN3nbLnrBFQFpNLcUw3ANQTBcFrVoUROClrHWt4uAeL--TX75idjIE7N9mP688PpTRjoUOTZmgnNYQ2gYH8xqr4dcmDyM8dJMfB2cAKlxn1viTEzA36NKJEkEa8xXGqelbsFxRAf2xo70RDLPXQBtw">
+<!-- Right chevron next button positioned at photo edge -->
+<button aria-label="Next image" class="absolute right-0 top-1/2 -translate-y-1/2 text-black hover:opacity-70 p-2 transition-opacity focus:outline-none" type="button">
+<svg fill="none" height="28" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" viewBox="0 0 24 24" width="28">
+<polyline points="9 18 15 12 9 6"></polyline>
+</svg>
+</button>
+</div>
+<!-- Horizontal Thumbnails Row -->
+<div class="flex items-center justify-center space-x-2 mt-6" data-purpose="thumbnail-strip"><!-- Thumbnail 1: Active -->
+<button class="w-[56px] h-[56px] border-2 border-black p-0.5 overflow-hidden bg-black/5 focus:outline-none" style="border-color: rgb(0, 0, 0);" type="button">
+<img alt="Front view thumbnail" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmzLR-OAUEDhMnPhLqd-UxDTow-eYstJBXnsKGJFUJOKd_Dl_eXBqCX8-CoUkfV3iEmVNvvafI20b4p7YW8CLzeUIuVXc5qgUrMxqMbi6pH2vUJpwHbGxV6FRlqmUDWUTY1KdrjTcwNlnfmADjXlBg2BmsowGTjdzNwgmbTdeQ-UFQy31m0_sgaZP9uS_W_17zXmeqefIWgMCIw750cpJCKOahs55ZAbx3SuF1gZg">
+</button>
+<!-- Thumbnail 2 -->
+<button class="w-[56px] h-[56px] border border-black/30 hover:border-black/70 p-0.5 overflow-hidden bg-black/5 transition-colors focus:outline-none" style="border-color: rgba(0, 0, 0, 0.3);" type="button">
+<img alt="Back view thumbnail" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAr5v8rKUdTUZ1NLnxMUJ1bmhUZTFhKom_NTGyoT_w8HIzYfGHNE7VO0RHkzR9tOdRi87UfaxHg_9CnZtMSU_ZbdUXV2FDH71DdtE6x8bw4YRoOWq4Odnq5ooV8Z-GCd9GtEUzjyfWFeZj322ICCGZKQ4FvgOa9nYKnzF0RJ3WYK3SLTwdWbqx0d5funmfffoseOHw2aHUgnk08Fw81HSSHTCoV0J_ts4TNu4XzB_o">
+</button>
+<!-- Thumbnail 3 -->
+<button class="w-[56px] h-[56px] border border-black/30 hover:border-black/70 p-0.5 overflow-hidden bg-black/5 transition-colors focus:outline-none" style="border-color: rgba(0, 0, 0, 0.3);" type="button">
+<img alt="Detail view thumbnail" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeGUmi57HHwlZzDC_IFOSToupz_RoaGSbiDBz38iVkgFiegYGjlazFR46YqcySpFx8-PYuJFU-UiX_b1aQqDJYCirzNdAgA0V38pWaVyPeU9IoReI8FGysDAeMYEvDurAqS0J3N_ew2w0bVzqN_DqslMeUfqDp_oNMjz9wx6fe6OEVVxBeHZ65io6iASgNBAOuaPjkwl6uvEBLWTfjKSls89HL6I5S31UOYAakm0Q">
+</button>
+<!-- Thumbnail 4 -->
+<button class="w-[56px] h-[56px] border border-black/30 hover:border-black/70 p-0.5 overflow-hidden bg-black/5 transition-colors focus:outline-none" style="border-color: rgba(0, 0, 0, 0.3);" type="button">
+<img alt="Model look thumbnail" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmZ3n8JyFGr0XlYg6cQMeJl38awcUHthb0v_nitdCXnX01Z31u8k53eQEUVfhAI2LkE4F4OPddxStxiMfBBO0pnZ2UF6sjWMoIM_yf86gdPrMrYrdNy7mIXIwdl2Js6TRMuTnHeCs-zNXMZvksaAK9TX5Ob_60iTy_H7px1WjVY0mZDDbsgPeP_30JcvQFuATrgn8JiOJNiFu_HVhtTZibCTqM5ajNkaKMf5RJQls">
+</button>
+<!-- Thumbnail 5 -->
+<button class="w-[56px] h-[56px] border border-black/30 hover:border-black/70 p-0.5 overflow-hidden bg-black/5 transition-colors focus:outline-none" style="border-color: rgba(0, 0, 0, 0.3);" type="button">
+<img alt="Label detail thumbnail" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXxR2a4v80Sa40kc4V6kMZHYqCv2c25qZA6NUvUTfLWPKiZefgZWEnMNMlmtJtMT1n21JRUKa5BPVQ7t7R9bKGXuwUciyE9VQaRqAu9cOT2XwK5KXJmE84sFW8wfm4EzB36uJEaDU754hRNpWd6vDDiATphHQ4ELeDEOGThEuUbr6knrQuVI3RuOqAEo4Iw23ne1ooHTPmqB8BEs_6Uii8DSi5NfonkjgxB9S97zA">
+</button></div>
+</section>
+<!-- END: ProductMediaGallery -->
+<!-- BEGIN: ProductDetails (42% width approx -> 5 cols) -->
+<section class="lg:col-span-5 flex flex-col justify-center" data-purpose="product-info">
+<div class="w-full max-w-[480px] flex flex-col space-y-[16px]">
+<!-- Row 1: Title and Price -->
+<div class="flex items-baseline justify-between w-full" data-purpose="header-row">
+<h1 class="text-[26px] font-bold tracking-tight uppercase leading-none font-sans">
+              SEPARATE TRACK HOODY
+            </h1>
+<span class="text-[26px] font-bold tracking-tight leading-none font-sans">
+              R1 299
+            </span>
+</div>
+<!-- Row 2: Colour Name -->
+<div data-purpose="colour-label"><span class="text-[16px] text-black">Beige</span></div>
+<!-- Row 3: Color Swatches -->
+<div class="flex items-center space-x-[8px]" data-purpose="colour-swatches">
+<!-- Active Beige Swatch -->
+<button aria-label="Color Beige" class="w-[64px] h-[64px] border-2 border-white p-0.5 overflow-hidden bg-[#e3dac9] focus:outline-none" type="button" style="border: 2px solid rgb(0, 0, 0);">
+<img alt="Beige swatch" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAg6B4sb1pGetu4Rx-9DNiZfM75_KueWBjWE5APLLylqa3ttNjxxMOZyn35G6wn8o-uXfgxHiPUXKmS2MZYzqfgtts1n42DfY2_3y0UDMnVe-uflcUFe9B9wiUNNwgqYBBCavoj-bJKmBH-xVIz8c57b6JbP91ulpW9N1-9X3fiocqwC_4YjHk3HF0dvl_ztEuqmLTfg1MZC5PuNXYpZsOIR69ONrCkUJvpCxXdd8">
+</button>
+<!-- Secondary Navy/Black Swatch -->
+<button aria-label="Color Navy" class="w-[64px] h-[64px] border-0 p-0.5 overflow-hidden bg-[#1f242e] opacity-80 hover:opacity-100 transition-opacity focus:outline-none" type="button">
+<img alt="Navy swatch" class="w-full h-full object-cover filter brightness-50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBU2_74ixVWvRS1xP-EPPHYWw4lXDOwNA2vi0VAXPzTx0UVtSueDqFggKiPiUQNIOP8GH45mMhcbyrUGYRkFKA5xhlYBAJ0dxlC-do9-of1XoBFVGEubaaNPKwn9Rku5YeVolQ0xoBORV6jf6m6JaSgAgfuhk6odYRa543Z2zA0B9-p4nUeLcSnu2bXB6JT2Mskm-SPXEFvEZ0AhaxmTVps9CL_koX-xisbEaV-69E">
+</button>
+</div>
+<!-- Row 4: Description (4 lines, 16px font, 24px line height) -->
+<div class="text-[16px] leading-[24px] flex flex-col" data-purpose="product-description">
+<p class="">100% cotton.</p>
+<p class="">Panelled pullover top.</p>
+<p class="">Wide silhouette.</p>
+<p class="">Made in Japan.</p>
+</div>
+<!-- Row 5: Sizing Link -->
+<div data-purpose="size-guide">
+<button class="text-[14px] underline cursor-pointer hover:opacity-80 transition-opacity p-0 bg-transparent border-0 text-black font-normal" type="button">
+              sizing
+            </button>
+</div>
+<!-- Row 6: Size Dropdown & Add to Cart -->
+<div class="flex items-center space-x-[8px] w-full pt-1" data-purpose="purchase-actions"><!-- Size dropdown -->
+<div class="flex-1 h-[48px] relative">
+<select class="custom-select w-full h-[48px] px-4 appearance-none bg-transparent text-black font-bold text-[16px] focus:outline-none cursor-pointer" style="border: 2px solid #000000; background-image: url(&quot;data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='square' stroke-linejoin='miter'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e&quot;);">
+<option class="bg-white text-black" value="small">Small</option>
+<option class="bg-white text-black" value="medium">Medium</option>
+<option class="bg-white text-black" value="large">Large</option>
+<option class="bg-white text-black" value="xlarge">X-Large</option>
+</select>
+</div>
+<!-- Add to Cart button -->
+<button class="flex-1 h-[48px] bg-transparent text-black font-bold text-[16px] uppercase tracking-wide hover:bg-black hover:text-white transition-colors flex items-center justify-center focus:outline-none" style="border: 2px solid rgb(0, 0, 0);" type="button">
+              Add to cart
+            </button></div>
+<!-- Row 7: Prev / Next Navigation Buttons -->
+<div class="flex items-center space-x-[8px] w-full" data-purpose="directional-nav"><!-- Left Arrow Button -->
+<button aria-label="Previous item" class="flex-1 h-[48px] bg-transparent text-black hover:bg-black hover:text-white transition-colors flex items-center justify-center focus:outline-none group" style="border: 2px solid rgb(0, 0, 0);" type="button">
+<svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" viewBox="0 0 24 24" width="22">
+<line x1="19" x2="5" y1="12" y2="12"></line>
+<polyline points="12 19 5 12 12 5"></polyline>
+</svg>
+</button>
+<!-- Right Arrow Button -->
+<button aria-label="Next item" class="flex-1 h-[48px] bg-transparent text-black hover:bg-black hover:text-white transition-colors flex items-center justify-center focus:outline-none group" style="border: 2px solid rgb(0, 0, 0);" type="button">
+<svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" viewBox="0 0 24 24" width="22">
+<line x1="5" x2="19" y1="12" y2="12"></line>
+<polyline points="12 5 19 12 12 19"></polyline>
+</svg>
+</button></div>
+</div>
+</section>
+<!-- END: ProductDetails -->
+</div>
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: MinimalFooterSpacing -->
+<footer aria-hidden="true" class="h-6 w-full"></footer>
+<!-- END: MinimalFooterSpacing -->
+
+
+</body></html>

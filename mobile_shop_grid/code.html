@@ -1,206 +1,270 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Mobile Shop Grid</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maisonvelle - Mobile Shop Grid</title>
 <!-- Google Fonts: IBM Plex Mono -->
-<link href="https://fonts.googleapis.com" rel="preconnect">
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&amp;display=swap" rel="stylesheet">
-<!-- Tailwind CSS CDN -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<style data-purpose="base-styling">
-    body {
-      font-family: 'IBM Plex Mono', monospace;
-      background-color: #FFFFFF;
-      color: #000000;
-      margin: 0;
-      padding: 0;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    /* Hide scrollbar for clean horizontal scrolling */
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-  </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --font-mono: 'IBM Plex Mono', monospace;
+    --font-size-base: 16px;
+    --line-height-base: 24px;
+    --color-text: #000000;
+    --color-bg: #ffffff;
+    --color-muted: #c4c4c4;
+    --color-footer: #777777;
+    --header-height: 56px;
+    --grid-gap-x: 12px;
+    --grid-gap-y: 40px;
+    --page-padding: 16px;
+    --font-panel: Arial, 'Helvetica Neue', sans-serif;
+    --btn-border: 2px solid #000000;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+
+  body {
+    font-family: var(--font-mono);
+    font-weight: 400;
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    justify-content: center;
+  }
+
+  .mobile-container {
+    width: 390px;
+    min-height: 100vh;
+    background-color: var(--color-bg);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 48px;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background-color: var(--color-bg);
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    padding: 0 var(--page-padding);
+  }
+
+  .icon-btn {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: var(--color-text);
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+  }
+
+  nav.category-slider {
+    flex: 1;
+    margin: 0 12px;
+    overflow-x: auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    white-space: nowrap;
+  }
+
+  nav.category-slider a {
+    color: var(--color-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+  }
+
+  nav.category-slider a.active {
+    color: var(--color-text);
+  }
+
+  main {
+    margin-top: 24px;
+    padding: 0 var(--page-padding);
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: var(--grid-gap-x);
+    row-gap: var(--grid-gap-y);
+  }
+
+  .product-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--color-text);
+    user-select: none;
+  }
+
+  .image-box {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+  }
+
+  .image-box img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .card-details {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+  }
+
+  footer {
+    margin-top: 48px;
+    padding: 0 var(--page-padding);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: var(--color-footer);
+    text-transform: uppercase;
+    font-size: 11px;
+    line-height: 18px;
+  }
+
+  footer .row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  footer a {
+    color: var(--color-footer);
+    text-decoration: none;
+  }
+
+  footer a:hover {
+    color: var(--color-text);
+  }
+</style>
 </head>
-<body class="bg-white flex justify-center">
-<!-- Mobile Viewport Container: 390px fixed width simulator -->
-<div class="w-[390px] min-h-screen bg-white relative flex flex-col pb-12" data-purpose="mobile-container">
-<!-- BEGIN: Header -->
-<header class="sticky top-0 z-50 bg-white h-[56px] flex items-center px-4" data-purpose="top-navigation">
-<!-- Left '+' icon (20px, thin) -->
-<button aria-label="Open Menu" class="w-5 h-5 flex-shrink-0 flex items-center justify-center p-0 m-0 border-0 bg-transparent text-black cursor-pointer" type="button">
-<svg fill="none" height="20" stroke="currentColor" stroke-linecap="square" stroke-width="1.2" viewBox="0 0 20 20" width="20">
-<line x1="10" x2="10" y1="2" y2="18"></line>
-<line x1="2" x2="18" y1="10" y2="10"></line>
-</svg>
-</button>
-<!-- Center Categories: Single row horizontal scroll without scrollbar -->
-<nav class="flex-1 mx-3 overflow-x-auto no-scrollbar flex items-center space-x-[20px] whitespace-nowrap text-[16px] leading-[24px]" data-purpose="category-slider">
-<a class="text-black font-normal uppercase" href="#">ALL</a>
-<a class="text-[#C4C4C4] font-normal uppercase" href="#">BAGS</a>
-<a class="text-[#C4C4C4] font-normal uppercase" href="#">SHIRTS</a>
-<a class="text-[#C4C4C4] font-normal uppercase" href="#">T-SHIRTS</a>
-<a class="text-[#C4C4C4] font-normal uppercase" href="#">PANTS</a>
-<a class="text-[#C4C4C4] font-normal uppercase" href="#">SHOES</a>
-<a class="text-[#C4C4C4] font-normal uppercase" href="#">ACCESSORIES</a>
-</nav>
-<!-- Right Bag Icon: Small minimalist shopping bag outline -->
-<button aria-label="Cart" class="w-5 h-5 flex-shrink-0 flex items-center justify-center p-0 m-0 border-0 bg-transparent text-black cursor-pointer" type="button">
-<svg fill="none" height="20" stroke="currentColor" stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.2" viewBox="0 0 18 20" width="18">
-<path d="M2.5 6.5H15.5V18.5H2.5V6.5Z"></path>
-<path d="M6 6.5V4.5C6 2.84315 7.34315 1.5 9 1.5C10.6569 1.5 12 2.84315 12 4.5V6.5"></path>
-</svg>
-</button>
-</header>
-<!-- END: Header -->
-<!-- BEGIN: ProductGrid -->
-<main class="mt-[24px] px-4" data-purpose="catalog-grid">
-<div class="grid grid-cols-3 gap-x-[12px] gap-y-[40px]">
-<!-- Product Cell 1 -->
-<article class="flex flex-col items-center" data-purpose="product-card">
-<div class="w-full aspect-square flex items-center justify-center bg-transparent">
-<img alt="WB-01" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxbOyB9ZiHjZiU1XhWzcVtYHShs_kd0hk4MkqoyIQjGDfKBiQmTQA2muofAFtsgLrvF_zEDU677VcVOcREaJnd5_ahbwnVM8BcekZPfiBsb_OqX5EYnh92MiottqBXfj08ZNRyPb9-Nlyi77-eokgBSKYDycngfX9JyAQpVyLrEdwoDvLmjvd98lcPk4bf-L7hInWMl8EgtlcVd_Ecq41nClUPiUiXIKc_IAkLi00">
+<body>
+
+<div class="mobile-container">
+  <!-- Header -->
+  <header>
+    <button type="button" class="icon-btn" aria-label="Toggle Grid">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.2">
+        <line x1="10" y1="2" x2="10" y2="18"></line>
+        <line x1="2" y1="10" x2="18" y2="10"></line>
+      </svg>
+    </button>
+
+    <nav class="category-slider no-scrollbar" aria-label="Categories">
+      <a href="#" class="active">ALL</a>
+      <a href="#">BAGS</a>
+      <a href="#">SHIRTS</a>
+      <a href="#">T-SHIRTS</a>
+      <a href="#">PANTS</a>
+      <a href="#">SHOES</a>
+      <a href="#">ACCESSORIES</a>
+    </nav>
+
+    <button type="button" class="icon-btn" aria-label="Cart">
+      <svg width="18" height="20" viewBox="0 0 18 20" fill="none" stroke="currentColor" stroke-width="1.2">
+        <path d="M2.5 6.5H15.5V18.5H2.5V6.5Z"></path>
+        <path d="M6 6.5V4.5C6 2.84315 7.34315 1.5 9 1.5C10.6569 1.5 12 2.84315 12 4.5V6.5"></path>
+      </svg>
+    </button>
+  </header>
+
+  <!-- Product Grid -->
+  <main>
+    <div class="grid-container">
+      <article class="product-card">
+        <div class="image-box">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxbOyB9ZiHjZiU1XhWzcVtYHShs_kd0hk4MkqoyIQjGDfKBiQmTQA2muofAFtsgLrvF_zEDU677VcVOcREaJnd5_ahbwnVM8BcekZPfiBsb_OqX5EYnh92MiottqBXfj08ZNRyPb9-Nlyi77-eokgBSKYDycngfX9JyAQpVyLrEdwoDvLmjvd98lcPk4bf-L7hInWMl8EgtlcVd_Ecq41nClUPiUiXIKc_IAkLi00" alt="WB-01">
+        </div>
+        <div class="card-details">
+          <span>WB-01</span>
+          <span>R2 499</span>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="image-box">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBZso6pjWlEQC3sBuojS4Qdp6CdsI3vl7xS2RVvXi2vlrJH2S-yRwCyvEvJdcVNdwdDk9wJj-kqC7cN-iMmztyTyGjV4OcgO2xYCnIrgotixSV4z1VdGrLjOax0brDmXBE6MuTUloaRCjUHPBoiNVhNHtwSJkzcSEds0YgGKCsydUobge60Dl5bykFI92vF5m1aSdG1I3vfNxlTibqDP11cmVpfYOgaVJBXWnH2ro" alt="SH-01">
+        </div>
+        <div class="card-details">
+          <span>SH-01</span>
+          <span>R899</span>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="image-box">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKnNH24xOdm208WQgmntUJvIL2DO3fNEx_pAqXVGrVpFfir4dACtf1DsbHOwMysDqOZYC53ZTDvG_v_rmiCKpdV8h4zTP8zfE4K2CpYf74GlkZ69pu1W7mKROSI2yxiXc1sbbP_l0ZnF_JxIkXsvxxaQWFvi1b5dt72PYov60UgT3PBrPOtbA52KkToAw1YMBdatKFgXi_bYvvyW1HywLyd0Jg39Il3DvSqGAgkGQ" alt="SP-06">
+        </div>
+        <div class="card-details">
+          <span>SP-06</span>
+          <span>R1 299</span>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <!-- Footer (2 rows, no DNSMPI) -->
+  <footer>
+    <div class="row" style="margin-bottom: 6px;">
+      <a href="#">CONTACT</a>
+      <a href="#">TERMS</a>
+      <a href="#">PRIVACY</a>
+      <a href="#">ACCESSIBILITY</a>
+    </div>
+    <div class="row">
+      <a href="#">COOKIES</a>
+      <a href="#">ORDER STATUS</a>
+    </div>
+  </footer>
 </div>
-<div class="mt-[8px] flex flex-col items-center text-center text-[16px] leading-[24px] text-black">
-<span>WB-01</span>
-<span>R2 499</span>
-</div>
-</article>
-<!-- Product Cell 2 -->
-<article class="flex flex-col items-center" data-purpose="product-card">
-<div class="w-full aspect-square flex items-center justify-center bg-transparent">
-<img alt="SH-01" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBZso6pjWlEQC3sBuojS4Qdp6CdsI3vl7xS2RVvXi2vlrJH2S-yRwCyvEvJdcVNdwdDk9wJj-kqC7cN-iMmztyTyGjV4OcgO2xYCnIrgotixSV4z1VdGrLjOax0brDmXBE6MuTUloaRCjUHPBoiNVhNHtwSJkzcSEds0YgGKCsydUobge60Dl5bykFI92vF5m1aSdG1I3vfNxlTibqDP11cmVpfYOgaVJBXWnH2ro">
-</div>
-<div class="mt-[8px] flex flex-col items-center text-center text-[16px] leading-[24px] text-black">
-<span>SH-01</span>
-<span>R899</span>
-</div>
-</article>
-<!-- Product Cell 3 -->
-<article class="flex flex-col items-center" data-purpose="product-card">
-<div class="w-full aspect-square flex items-center justify-center bg-transparent">
-<img alt="SP-06" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKnNH24xOdm208WQgmntUJvIL2DO3fNEx_pAqXVGrVpFfir4dACtf1DsbHOwMysDqOZYC53ZTDvG_v_rmiCKpdV8h4zTP8zfE4K2CpYf74GlkZ69pu1W7mKROSI2yxiXc1sbbP_l0ZnF_JxIkXsvxxaQWFvi1b5dt72PYov60UgT3PBrPOtbA52KkToAw1YMBdatKFgXi_bYvvyW1HywLyd0Jg39Il3DvSqGAgkGQ">
-</div>
-<div class="mt-[8px] flex flex-col items-center text-center text-[16px] leading-[24px] text-black">
-<span>SP-06</span>
-<span>R1 299</span>
-</div>
-</article>
-<!-- Product Cell 4 -->
-<article class="flex flex-col items-center" data-purpose="product-card">
-<div class="w-full aspect-square flex items-center justify-center bg-transparent">
-<img alt="PT-04" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaos0pQCO91Zojy9vP8S4glRTj2JDGGbRoxiHucZgK2ZM2__t2AZ1ZftoyvGMxl97B_jIutj1A8w48dzNzZIcTRiswuVUygjajemfaOWmKsF6qBGxuYTAC_wM2nZlm9GP2vnAmqoqAjUXqmQ96gc_DS-ykTtMXyx00X2Fl7PdOfxGplEgzbo7hrB9ivQi2Epsb45VzMkbkZ1fPhJKq8w9vdqgmmJK0AQTzZxelb04">
-</div>
-<div class="mt-[8px] flex flex-col items-center text-center text-[16px] leading-[24px] text-black">
-<span>PT-04</span>
-<span>R1 899</span>
-</div>
-</article>
-<!-- Product Cell 5 -->
-<article class="flex flex-col items-center" data-purpose="product-card">
-<div class="w-full aspect-square flex items-center justify-center bg-transparent">
-<img alt="PT-05" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBy8N-6ioxfca0vVFqKBovsMYjjzYzGDcoUyu2F8n-5TZDHjskMNGkdUmAzna4Nc-G1lAQbQmgmxITd1OfVpTF-cLPiRgmFAm5sutAtSUSzsPbLqYAM329eq7PEqc1C5ldGwzkJeuDDcZZgImSGL5AlX0UCBhio0-Spd6DCY4FLxdk5rJIadVRkdVVzuB5botekHiXHwAmD59QdsRBUAnceiCeN_oVVQrvVGu8Uto8">
-</div>
-<div class="mt-[8px] flex flex-col items-center text-center text-[16px] leading-[24px] text-black">
-<span>PT-05</span>
-<span>R1 899</span>
-</div>
-</article>
-<!-- Product Cell 6 -->
-<article class="flex flex-col items-center" data-purpose="product-card">
-<div class="w-full aspect-square flex items-center justify-center bg-transparent">
-<img alt="TT-06" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnqywRSO0zqYRwNhgO-C8uktv-dhrXfoKeqvI6WWeqFOYYD6hsWPQ4ObvCpk1DHklN_Afcj0ABwiY_OJD6U4bpYXlrmSHsQQLfb2wdPbaFVR1VgXCUnd2yNjg8b0QU4j6es38LB9P2CIxXj1r2rvgnbP2vF6ugyLvbHuDFBztN4uiNyWttcgyL40ADLyiX9Oh2fiZQ5g0Al3HwI_J0PXLZxUFGb_aH5_-H-BXYFp4">
-</div>
-<div class="mt-[8px] flex flex-col items-center text-center text-[16px] leading-[24px] text-black">
-<span>TT-06</span>
-<span>R699</span>
-</div>
-</article>
-<!-- Product Cell 7 -->
-<article class="flex flex-col items-center" data-purpose="product-card">
-<div class="w-full aspect-square flex items-center justify-center bg-transparent">
-<img alt="BX-01" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuApXM_GldEHP8DpzLj1kk-Hx4KrZlvQ7MXa4SWXi3xR52jjUAb1Q1TK8xFREw99RM3M1jd5snnwLVExINMQGFfCJ6T916dQgbaQTMrJ_uTUPuKwq4tV4gW11dWTWCYDxFtUv1dA_gr0Uwp-UsWwlGm398xThAbQxAS1YmrH6_xrQWLWRTdY9aNs_E78ze44j-pwBXRXbnccw__P__6SM9G-kR64FDwEcQiIXQETGCA">
-</div>
-<div class="mt-[8px] flex flex-col items-center text-center text-[16px] leading-[24px] text-black">
-<span>BX-01</span>
-<span>R499</span>
-</div>
-</article>
-<!-- Product Cell 8 -->
-<article class="flex flex-col items-center" data-purpose="product-card">
-<div class="w-full aspect-square flex items-center justify-center bg-transparent">
-<img alt="SK-01" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWw3gJqN7FxER1tP73fcQ0cen4yjHOknwO3h4t-Y903W4rb-ni7_NMtiRqTgKIGlZ34BHIyVzYzKvVGqZD0Q_ii5hvRKYBjnyvB8pHHyLITODAlxZh7WL9XSmrrjz0IMHbkTbI9KaMMPTQZ4GSiQh0TMVvh_cSPNSzubzT34414_kyltfT8FWVmicorCKpnGtWMSpuc-VGmvgUfRFU8aF6DJhKk1qfQiiOTiT8a-s">
-</div>
-<div class="mt-[8px] flex flex-col items-center text-center text-[16px] leading-[24px] text-black">
-<span>SK-01</span>
-<span>R399</span>
-</div>
-</article>
-<!-- Product Cell 9 -->
-<article class="flex flex-col items-center" data-purpose="product-card">
-<div class="w-full aspect-square flex items-center justify-center bg-transparent">
-<img alt="AB-01" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8Ayb16GGUHTLm3uUY30Q9i5FLhzQ8w18VRvKspRBnUjHkKwRd92j7zO-ijg5oPpD97QHXvTZDDu3G-iJIrWF5s8_WeS3SCmtY1y1VGSjNxmhFD9sXLfSMcY58IF0Lh08lRW3OF875JyOldW8kmIDHuNRJVzaWhaAwDXHjEZ5oRdT68aZmvgz6E07Dgjjy914i3csVNbxmzH7mOkKhcgUBzCcLya9JX1mg5H30WP0">
-</div>
-<div class="mt-[8px] flex flex-col items-center text-center text-[16px] leading-[24px] text-black">
-<span>AB-01</span>
-<span>R3 299</span>
-</div>
-</article>
-<!-- Product Cell 10 -->
-<article class="flex flex-col items-center" data-purpose="product-card">
-<div class="w-full aspect-square flex items-center justify-center bg-transparent">
-<img alt="800S" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2tZz8HcwuwdpvMk7jxPRBlBvFA05J2hGEOwp3aoQAL2TZ-dP_vXz_3uuxIzgoy7uwzP7U033raezeEW3vSbxY6huF4BacZPoZpDYT_3-_xZQgNGpm1CmYl8DN1STNuxEtDxdIcOfSA-IxL3pOsmo4km7Quw3JqYqJsZbedg1N3vDanGNTLbqjTZpOQaxW5MwmKjuNjbyICsLhsingaXdTu4FpMTMyLoTRU_rMvgo">
-</div>
-<div class="mt-[8px] flex flex-col items-center text-center text-[16px] leading-[24px] text-black">
-<span>800S</span>
-<span>R2 899</span>
-</div>
-</article>
-<!-- Product Cell 11 -->
-<article class="flex flex-col items-center" data-purpose="product-card">
-<div class="w-full aspect-square flex items-center justify-center bg-transparent">
-<img alt="YS-01" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCz8TPlKXMFDdkYOTfNYdcHPVSkpnVMA1Zi_pzKcEExFaad-wlxdJbSRkOREqkCg4RcvbxLFFG72jZojyQdf--rs2m6mCFLR9LjujubVKFeTZGkm9cc16EIkeIaeuKN2HoWzIYlKz8PeWOer00UAoI-AiO9mrLpGGScKyOjUyCmR49Sq-c7kkQ3af2an8k9dHQPektPYKD1qWS8HEg07om8oHrWAaqVMLb5fG_6u8U">
-</div>
-<div class="mt-[8px] flex flex-col items-center text-center text-[16px] leading-[24px] text-black">
-<span>YS-01</span>
-<span>R1 199</span>
-</div>
-</article>
-<!-- Product Cell 12 -->
-<article class="flex flex-col items-center" data-purpose="product-card">
-<div class="w-full aspect-square flex items-center justify-center bg-transparent">
-<img alt="BP-01" class="max-w-full max-h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2lRbik2of57DdHMlViJ0VWSIrgldhNc7dJji2w_wWvI1YhAKLmstkOwiTo1c9C-w-vTBtFSPMU0u2s4n2l8yMKwZ0VaRd0pVQbCVUPu8Kn7vO6qal4X94O22KCazLDrdDzTrN8cwa07iLKjamxQy5BazjdDnsTTHLIeljLmceqVQfsjpamoOttSqVs6eTVp_69AamL1VFMmOUp43rBqsFICpKwyd24-08ydH0nQE">
-</div>
-<div class="mt-[8px] flex flex-col items-center text-center text-[16px] leading-[24px] text-black">
-<span>BP-01</span>
-<span>R1 499</span>
-</div>
-</article>
-</div>
-</main>
-<!-- END: ProductGrid -->
-<!-- BEGIN: Footer -->
-<footer class="mt-[48px] px-4 flex flex-col items-center text-center text-[#777777] uppercase text-[11px] leading-[18px]" data-purpose="site-footer">
-<!-- Row 1 -->
-<div class="flex justify-center space-x-[20px] mb-[6px]">
-<a class="hover:text-black" href="#">CONTACT</a>
-<a class="hover:text-black" href="#">TERMS</a>
-<a class="hover:text-black" href="#">PRIVACY</a>
-<a class="hover:text-black" href="#">ACCESSIBILITY</a>
-</div>
-<!-- Row 2 -->
-<div class="flex justify-center space-x-[20px]">
-<a class="hover:text-black" href="#">DNSMPI</a>
-<a class="hover:text-black" href="#">COOKIES</a>
-<a class="hover:text-black" href="#">ORDER STATUS</a>
-</div>
-</footer>
-<!-- END: Footer -->
-</div>
-</body></html>
+
+</body>
+</html>

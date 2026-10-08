@@ -3,12 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maisonvelle - Minimalist Apparel Catalog</title>
+<title>Maisonvelle - Minimalist Apparel</title>
 <!-- IBM Plex Mono Font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
-<!-- CSS Custom Properties & Reset -->
 <style>
   :root {
     --font-mono: 'IBM Plex Mono', monospace;
@@ -54,7 +53,7 @@
     outline-offset: 2px;
   }
 
-  /* Header Layout */
+  /* Site Header */
   .site-header {
     position: fixed;
     top: 0;
@@ -97,6 +96,7 @@
     text-transform: uppercase;
     overflow-x: auto;
     white-space: nowrap;
+    scrollbar-width: none;
   }
 
   .category-nav::-webkit-scrollbar {
@@ -116,7 +116,7 @@
     color: var(--color-text);
   }
 
-  /* Main Grid */
+  /* Main Grid Content */
   .main-content {
     width: 100%;
     max-width: 1440px;
@@ -245,6 +245,148 @@
     color: var(--color-text);
   }
 
+  /* Mini Cart Drawer */
+  .cart-drawer-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+
+  .cart-drawer-overlay.open {
+    display: block;
+  }
+
+  .cart-drawer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    max-width: 400px;
+    height: 100%;
+    background-color: #ffffff;
+    color: #000000;
+    font-family: var(--font-mono);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 24px;
+    border-left: 2px solid #000000;
+  }
+
+  .cart-drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #000000;
+    padding-bottom: 16px;
+  }
+
+  .cart-title {
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .cart-close-btn {
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #000000;
+  }
+
+  .cart-items-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .cart-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 12px;
+  }
+
+  .cart-item-img {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f9f9f9;
+  }
+
+  .cart-item-img img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .cart-item-info {
+    flex: 1;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .cart-item-title {
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .cart-item-meta {
+    color: #777777;
+    font-size: 12px;
+  }
+
+  .cart-drawer-footer {
+    border-top: 1px solid #000000;
+    padding-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cart-subtotal-row {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  .cart-action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: uppercase;
+    border: 2px solid #000000;
+  }
+
+  .cart-action-btn.primary {
+    background-color: #000000;
+    color: #ffffff;
+  }
+
+  .cart-action-btn.secondary {
+    background-color: transparent;
+    color: #000000;
+  }
+
   @media (max-width: 768px) {
     :root {
       --header-height: 56px;
@@ -270,7 +412,7 @@
 </head>
 <body>
 
-<!-- Header -->
+<!-- Site Header -->
 <header class="site-header">
   <div class="header-left">
     <button type="button" class="icon-btn" id="grid-toggle-btn" aria-label="Toggle grid columns">
@@ -304,10 +446,10 @@
   </div>
 </header>
 
-<!-- Main Grid -->
+<!-- Main Catalog Content -->
 <main class="main-content">
   <div class="shop-grid" id="shop-grid">
-    <article class="product-tile">
+    <a href="product.html" class="product-tile">
       <div class="image-wrapper">
         <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYne9kL7n8annCtdbe_U3iYcnMARm0eoszurvEdqmjeIAA7TPqZr0U0jDHhaIKN9rEkSlKcMTupUYKClsGAhN3nbLnrBFQFpNLcUw3ANQTBcFrVoUROClrHWt4uAeL--TX75idjIE7N9mP688PpTRjoUOTZmgnNYQ2gYH8xqr4dcmDyM8dJMfB2cAKlxn1viTEzA36NKJEkEa8xXGqelbsFxRAf2xo70RDLPXQBtw" alt="TS-03">
       </div>
@@ -315,9 +457,9 @@
         <p class="product-sku">TS-03</p>
         <p class="product-price">R899</p>
       </div>
-    </article>
+    </a>
 
-    <article class="product-tile">
+    <a href="product.html" class="product-tile">
       <div class="image-wrapper">
         <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxbOyB9ZiHjZiU1XhWzcVtYHShs_kd0hk4MkqoyIQjGDfKBiQmTQA2muofAFtsgLrvF_zEDU677VcVOcREaJnd5_ahbwnVM8BcekZPfiBsb_OqX5EYnh92MiottqBXfj08ZNRyPb9-Nlyi77-eokgBSKYDycngfX9JyAQpVyLrEdwoDvLmjvd98lcPk4bf-L7hInWMl8EgtlcVd_Ecq41nClUPiUiXIKc_IAkLi00" alt="LS-03">
       </div>
@@ -325,9 +467,9 @@
         <p class="product-sku">LS-03</p>
         <p class="product-price">R1 199</p>
       </div>
-    </article>
+    </a>
 
-    <article class="product-tile">
+    <a href="product.html" class="product-tile">
       <div class="image-wrapper">
         <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEtvgt8Qy1-HewEBX99sSOIiXwXRTB_-OyDGItf7IbVNAUEf2K1fkAR6WUCq6KYHB6GO2YeqDLChY5yZSOukQb6c3kD9e_1niue9cQDjw-vMEXEM_6fZIA6PfZYoMwU6KrxyNRHPX4AMlHRNMzIj3XeejD5lGiawhiT0sBFnhdZPETDxNfPtip5XBd75l8yms3Eo1ZnaC5LXJR2eMDALGddTGjuGbEOF_q8s9K3OE" alt="HD-03">
       </div>
@@ -335,9 +477,9 @@
         <p class="product-sku">HD-03</p>
         <p class="product-price">R2 499</p>
       </div>
-    </article>
+    </a>
 
-    <article class="product-tile">
+    <a href="product.html" class="product-tile">
       <div class="image-wrapper">
         <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxbOyB9ZiHjZiU1XhWzcVtYHShs_kd0hk4MkqoyIQjGDfKBiQmTQA2muofAFtsgLrvF_zEDU677VcVOcREaJnd5_ahbwnVM8BcekZPfiBsb_OqX5EYnh92MiottqBXfj08ZNRyPb9-Nlyi77-eokgBSKYDycngfX9JyAQpVyLrEdwoDvLmjvd98lcPk4bf-L7hInWMl8EgtlcVd_Ecq41nClUPiUiXIKc_IAkLi00" alt="WB-01">
       </div>
@@ -345,9 +487,9 @@
         <p class="product-sku">WB-01</p>
         <p class="product-price">R2 899</p>
       </div>
-    </article>
+    </a>
 
-    <article class="product-tile">
+    <a href="product.html" class="product-tile">
       <div class="image-wrapper">
         <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBZso6pjWlEQC3sBuojS4Qdp6CdsI3vl7xS2RVvXi2vlrJH2S-yRwCyvEvJdcVNdwdDk9wJj-kqC7cN-iMmztyTyGjV4OcgO2xYCnIrgotixSV4z1VdGrLjOax0brDmXBE6MuTUloaRCjUHPBoiNVhNHtwSJkzcSEds0YgGKCsydUobge60Dl5bykFI92vF5m1aSdG1I3vfNxlTibqDP11cmVpfYOgaVJBXWnH2ro" alt="SH-01">
       </div>
@@ -355,9 +497,9 @@
         <p class="product-sku">SH-01</p>
         <p class="product-price">R999</p>
       </div>
-    </article>
+    </a>
 
-    <article class="product-tile">
+    <a href="product.html" class="product-tile">
       <div class="image-wrapper">
         <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKnNH24xOdm208WQgmntUJvIL2DO3fNEx_pAqXVGrVpFfir4dACtf1DsbHOwMysDqOZYC53ZTDvG_v_rmiCKpdV8h4zTP8zfE4K2CpYf74GlkZ69pu1W7mKROSI2yxiXc1sbbP_l0ZnF_JxIkXsvxxaQWFvi1b5dt72PYov60UgT3PBrPOtbA52KkToAw1YMBdatKFgXi_bYvvyW1HywLyd0Jg39Il3DvSqGAgkGQ" alt="SP-06">
       </div>
@@ -365,29 +507,30 @@
         <p class="product-sku">SP-06</p>
         <p class="product-price">R1 699</p>
       </div>
-    </article>
+    </a>
   </div>
 
-  <!-- Mobile Feed Container (Hidden by default, shown when toggled on mobile) -->
+  <!-- Mobile Feed Container -->
   <div class="feed-view" id="mobile-feed-view">
-    <div class="feed-slide">
+    <a href="product.html" class="feed-slide">
       <div class="feed-image-wrapper">
-        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYne9kL7n8annCtdbe_U3iYcnMARm0eoszurvEdqmjeIAA7TPqZr0U0jDHhaIKN9rEkSlKcMTupUYKClsGAhN3nbLnrBFQFpNLcUw3ANQTBcFrVoUROClrHWt4uAeL--TX75idjIE7N9mP688PpTRjoUOTZmgnNYQ2gYH8xqr4dcmDyM8dJMfB2cAKlxn1viTEzA36NKJEkEa8xXGqelbsFxRAf2xo70RDLPXQBtw" alt="TS-03">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYne9kL7n8annCtdbe_U3iYcnMARm0eoszurvEdqmjeIAA7TPqZr0U0jDHhaIKN9rEkSlKcMTupUYKClsGAhN3nbLnrBFQFpNLcUw3ANQTBcFrVoUROClrHWt4uAeL--TX75idjIE7N9mP688PpTRjoUOTZmgnNYQ2gYH8xqr4dcmDyM8dJMfB2cAKlxn1viTEzA36NKJEkEa8xXGqelbsFxRAf2xo70RDLPXQBtw" alt="TS-03" loading="eager">
       </div>
       <div class="feed-info">
         <p class="product-sku">TS-03</p>
         <p class="product-price">R899</p>
       </div>
-    </div>
-    <div class="feed-slide">
+    </a>
+
+    <a href="product.html" class="feed-slide">
       <div class="feed-image-wrapper">
-        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxbOyB9ZiHjZiU1XhWzcVtYHShs_kd0hk4MkqoyIQjGDfKBiQmTQA2muofAFtsgLrvF_zEDU677VcVOcREaJnd5_ahbwnVM8BcekZPfiBsb_OqX5EYnh92MiottqBXfj08ZNRyPb9-Nlyi77-eokgBSKYDycngfX9JyAQpVyLrEdwoDvLmjvd98lcPk4bf-L7hInWMl8EgtlcVd_Ecq41nClUPiUiXIKc_IAkLi00" alt="WB-01">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxbOyB9ZiHjZiU1XhWzcVtYHShs_kd0hk4MkqoyIQjGDfKBiQmTQA2muofAFtsgLrvF_zEDU677VcVOcREaJnd5_ahbwnVM8BcekZPfiBsb_OqX5EYnh92MiottqBXfj08ZNRyPb9-Nlyi77-eokgBSKYDycngfX9JyAQpVyLrEdwoDvLmjvd98lcPk4bf-L7hInWMl8EgtlcVd_Ecq41nClUPiUiXIKc_IAkLi00" alt="WB-01" loading="lazy">
       </div>
       <div class="feed-info">
         <p class="product-sku">WB-01</p>
         <p class="product-price">R2 899</p>
       </div>
-    </div>
+    </a>
   </div>
 </main>
 
@@ -403,6 +546,49 @@
   </nav>
 </footer>
 
+<!-- Mini Cart Overlay -->
+<div class="cart-drawer-overlay" id="cart-drawer-overlay">
+  <aside class="cart-drawer" id="cart-drawer" aria-label="Mini Cart">
+    <div class="cart-drawer-header">
+      <h2 class="cart-title">BAG (2)</h2>
+      <button type="button" class="cart-close-btn" id="cart-close-btn" aria-label="Close cart">✕</button>
+    </div>
+
+    <div class="cart-items-list">
+      <div class="cart-item">
+        <div class="cart-item-img">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEtvgt8Qy1-HewEBX99sSOIiXwXRTB_-OyDGItf7IbVNAUEf2K1fkAR6WUCq6KYHB6GO2YeqDLChY5yZSOukQb6c3kD9e_1niue9cQDjw-vMEXEM_6fZIA6PfZYoMwU6KrxyNRHPX4AMlHRNMzIj3XeejD5lGiawhiT0sBFnhdZPETDxNfPtip5XBd75l8yms3Eo1ZnaC5LXJR2eMDALGddTGjuGbEOF_q8s9K3OE" alt="SEPARATE TRACK HOODY">
+        </div>
+        <div class="cart-item-info">
+          <p class="cart-item-title">SEPARATE TRACK HOODY</p>
+          <p class="cart-item-meta">SIZE: M / BEIGE</p>
+          <p class="cart-item-price">1 × R1 299</p>
+        </div>
+      </div>
+
+      <div class="cart-item">
+        <div class="cart-item-img">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYne9kL7n8annCtdbe_U3iYcnMARm0eoszurvEdqmjeIAA7TPqZr0U0jDHhaIKN9rEkSlKcMTupUYKClsGAhN3nbLnrBFQFpNLcUw3ANQTBcFrVoUROClrHWt4uAeL--TX75idjIE7N9mP688PpTRjoUOTZmgnNYQ2gYH8xqr4dcmDyM8dJMfB2cAKlxn1viTEzA36NKJEkEa8xXGqelbsFxRAf2xo70RDLPXQBtw" alt="TS-03">
+        </div>
+        <div class="cart-item-info">
+          <p class="cart-item-title">TS-03</p>
+          <p class="cart-item-meta">SIZE: L / BLACK</p>
+          <p class="cart-item-price">1 × R899</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cart-drawer-footer">
+      <div class="cart-subtotal-row">
+        <span>SUBTOTAL</span>
+        <span>R2 198</span>
+      </div>
+      <a href="#" class="cart-action-btn primary">CHECKOUT</a>
+      <a href="#" class="cart-action-btn secondary">VIEW BAG</a>
+    </div>
+  </aside>
+</div>
+
 <script>
   (function() {
     const toggleBtn = document.getElementById('grid-toggle-btn');
@@ -411,54 +597,54 @@
     const iconPlus = document.getElementById('toggle-icon-plus');
     const iconBack = document.getElementById('toggle-icon-back');
 
-    if (!toggleBtn || !shopGrid) return;
+    if (toggleBtn && shopGrid) {
+      let isToggled = localStorage.getItem('mv_grid_state') === 'toggled';
 
-    let isToggled = localStorage.getItem('mv_grid_state') === 'toggled';
+      function updateView() {
+        const isMobile = window.innerWidth <= 768;
 
-    function updateView() {
-      const isMobile = window.innerWidth <= 768;
+        if (isToggled) {
+          iconPlus.style.display = 'none';
+          iconBack.style.display = 'inline-block';
 
-      if (isToggled) {
-        iconPlus.style.display = 'none';
-        iconBack.style.display = 'inline-block';
-
-        if (isMobile) {
-          shopGrid.style.display = 'none';
-          feedView.style.display = 'block';
+          if (isMobile) {
+            shopGrid.style.display = 'none';
+            feedView.style.display = 'block';
+          } else {
+            shopGrid.style.display = 'grid';
+            shopGrid.classList.remove('cols-6');
+            shopGrid.classList.add('cols-3');
+            feedView.style.display = 'none';
+          }
         } else {
-          shopGrid.style.display = 'grid';
-          shopGrid.classList.remove('cols-6');
-          shopGrid.classList.add('cols-3');
-          feedView.style.display = 'none';
-        }
-      } else {
-        iconPlus.style.display = 'inline-block';
-        iconBack.style.display = 'none';
+          iconPlus.style.display = 'inline-block';
+          iconBack.style.display = 'none';
 
-        if (isMobile) {
-          shopGrid.style.display = 'grid';
-          shopGrid.classList.remove('cols-6');
-          shopGrid.classList.add('cols-3');
-          feedView.style.display = 'none';
-        } else {
-          shopGrid.style.display = 'grid';
-          shopGrid.classList.remove('cols-3');
-          shopGrid.classList.add('cols-6');
-          feedView.style.display = 'none';
+          if (isMobile) {
+            shopGrid.style.display = 'grid';
+            shopGrid.classList.remove('cols-6');
+            shopGrid.classList.add('cols-3');
+            feedView.style.display = 'none';
+          } else {
+            shopGrid.style.display = 'grid';
+            shopGrid.classList.remove('cols-3');
+            shopGrid.classList.add('cols-6');
+            feedView.style.display = 'none';
+          }
         }
       }
+
+      toggleBtn.addEventListener('click', function() {
+        isToggled = !isToggled;
+        localStorage.setItem('mv_grid_state', isToggled ? 'toggled' : 'default');
+        updateView();
+      });
+
+      window.addEventListener('resize', updateView);
+      updateView();
     }
 
-    toggleBtn.addEventListener('click', function() {
-      isToggled = !isToggled;
-      localStorage.setItem('mv_grid_state', isToggled ? 'toggled' : 'default');
-      updateView();
-    });
-
-    window.addEventListener('resize', updateView);
-    updateView();
-
-    // Category navigation active state
+    // Category Active state
     const categoryLinks = document.querySelectorAll('.category-nav a');
     categoryLinks.forEach(link => {
       link.addEventListener('click', function(e) {
@@ -467,6 +653,19 @@
         this.classList.add('active');
       });
     });
+
+    // Cart Drawer Toggle
+    const bagBtn = document.getElementById('bag-btn');
+    const cartOverlay = document.getElementById('cart-drawer-overlay');
+    const cartCloseBtn = document.getElementById('cart-close-btn');
+
+    if (bagBtn && cartOverlay) {
+      bagBtn.addEventListener('click', () => cartOverlay.classList.add('open'));
+      cartCloseBtn.addEventListener('click', () => cartOverlay.classList.remove('open'));
+      cartOverlay.addEventListener('click', (e) => {
+        if (e.target === cartOverlay) cartOverlay.classList.remove('open');
+      });
+    }
   })();
 </script>
 </body>

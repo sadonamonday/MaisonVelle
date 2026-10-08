@@ -1,136 +1,311 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>SEPARATE TRACK HOODY</title>
-<!-- Tailwind CSS CDN with forms and container queries -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- BEGIN: Custom Styles -->
-<style data-purpose="custom-overrides">
-    body {
-      background-color: #8E2B1C;
-      font-family: Arial, Helvetica, sans-serif;
-      margin: 0;
-      padding: 0;
-      -webkit-tap-highlight-color: transparent;
-    }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEPARATE TRACK HOODY - Mobile</title>
+<!-- Google Fonts: IBM Plex Mono -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --font-mono: 'IBM Plex Mono', monospace;
+    --font-panel: Arial, 'Helvetica Neue', sans-serif;
+    --font-size-base: 16px;
+    --line-height-base: 24px;
+    --color-bg: #8E2B1C;
+    --color-text: #FFFFFF;
+    --btn-border: 2px solid #FFFFFF;
+  }
 
-    /* Glassmorphism styling */
-    .glass-card {
-      background: rgba(0, 0, 0, 0.35);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
-    /* Custom sharp controls */
-    .sharp-control {
-      border-radius: 0px !important;
-    }
-  </style>
-<!-- END: Custom Styles -->
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    justify-content: center;
+  }
+
+  .mobile-canvas {
+    width: 390px;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 16px;
+  }
+
+  /* Floating Header */
+  .floating-header {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    height: 56px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+  }
+
+  .icon-btn {
+    background: transparent;
+    border: none;
+    color: var(--color-text);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+  }
+
+  /* Photo Section */
+  .photo-section {
+    width: 390px;
+    height: 500px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .photo-section img {
+    max-width: 320px;
+    max-height: 380px;
+    object-fit: contain;
+  }
+
+  .right-chevron {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: var(--color-text);
+    cursor: pointer;
+  }
+
+  /* Details Card */
+  .details-card {
+    margin: 0 12px 12px;
+    padding: 16px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: var(--font-panel);
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .color-label {
+    font-size: var(--font-size-base);
+  }
+
+  .swatches-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .swatch-btn {
+    width: 64px;
+    height: 64px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: transparent;
+    cursor: pointer;
+    border-radius: 0;
+    padding: 2px;
+  }
+
+  .swatch-btn.active {
+    border: 2px solid var(--color-text);
+  }
+
+  .swatch-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .description-text {
+    display: flex;
+    flex-direction: column;
+    font-size: var(--font-size-base);
+    line-height: 1.4;
+  }
+
+  .sizing-link {
+    font-size: 14px;
+    text-decoration: underline;
+    color: var(--color-text);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    text-align: left;
+  }
+
+  .size-dropdown {
+    width: 100%;
+    height: 48px;
+    background: transparent;
+    border: var(--btn-border);
+    color: var(--color-text);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-base);
+    padding: 0 16px;
+    border-radius: 0;
+    appearance: none;
+  }
+
+  .size-dropdown option {
+    background-color: #ffffff;
+    color: #000000;
+  }
+
+  .add-to-cart-btn {
+    width: 100%;
+    height: 48px;
+    background: transparent;
+    border: var(--btn-border);
+    color: var(--color-text);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: var(--font-size-base);
+    text-transform: uppercase;
+    border-radius: 0;
+    cursor: pointer;
+  }
+
+  .nav-arrows-row {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .nav-arrow-btn {
+    flex: 1;
+    height: 44px;
+    background: transparent;
+    border: var(--btn-border);
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0;
+    cursor: pointer;
+  }
+</style>
 </head>
-<body class="flex justify-center items-start min-h-screen" style="background-color: rgb(255, 255, 255);">
-<!-- BEGIN: Mobile Container -->
-<!-- Constrained exactly to 390px wide mobile canvas -->
-<main class="w-[390px] min-h-screen relative flex flex-col justify-start pb-3 select-none" style="background-color: rgb(255, 255, 255);">
-<!-- BEGIN: Floating Header -->
-<header class="absolute top-[12px] left-[12px] w-[calc(100%-24px)] h-[56px] rounded-[12px] z-30 flex items-center justify-between px-[16px] text-black bg-white/80 backdrop-blur-md border border-black/20 shadow-sm" data-purpose="floating-header">
-<button aria-label="Go Back" class="flex items-center justify-center p-1 text-black hover:opacity-70 transition-opacity" type="button">
-<svg class="w-6 h-6 stroke-current" fill="none" stroke-width="1.75" viewBox="0 0 24 24">
-<path d="M15.75 19.5L8.25 12l7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
-</svg>
-</button>
-<button aria-label="View Shopping Bag" class="flex items-center justify-center p-1 text-black hover:opacity-70 transition-opacity" type="button">
-<svg class="w-6 h-6 stroke-current" fill="none" stroke-width="1.75" viewBox="0 0 24 24">
-<path d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25c-.67 0-1.19-.578-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119.993z" stroke-linecap="round" stroke-linejoin="round"></path>
-</svg>
-</button>
-</header>
-<!-- END: Floating Header -->
-<!-- BEGIN: Product Photo Area -->
-<section class="w-[390px] h-[500px] relative flex items-center justify-center overflow-hidden shrink-0" data-purpose="product-gallery">
-<!-- Product Cut-out Image -->
-<div class="w-full h-full flex items-center justify-center pt-12 px-6">
-<img alt="Cream/beige hoodie cut-out" class="max-h-[380px] max-w-[320px] object-contain drop-shadow-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEtvgt8Qy1-HewEBX99sSOIiXwXRTB_-OyDGItf7IbVNAUEf2K1fkAR6WUCq6KYHB6GO2YeqDLChY5yZSOukQb6c3kD9e_1niue9cQDjw-vMEXEM_6fZIA6PfZYoMwU6KrxyNRHPX4AMlHRNMzIj3XeejD5lGiawhiT0sBFnhdZPETDxNfPtip5XBd75l8yms3Eo1ZnaC5LXJR2eMDALGddTGjuGbEOF_q8s9K3OE">
-</div>
-<!-- Right Chevron Navigation Button -->
-<button aria-label="Next Image" class="absolute right-[16px] top-1/2 -translate-y-1/2 p-1 text-black hover:opacity-70 transition-opacity z-10" type="button">
-<svg class="w-7 h-7 stroke-current" fill="none" stroke-width="1.75" viewBox="0 0 24 24">
-<path d="M8.25 4.5l7.5 7.5-7.5 7.5" stroke-linecap="round" stroke-linejoin="round"></path>
-</svg>
-</button>
-</section>
-<!-- END: Product Photo Area -->
-<!-- BEGIN: Details Card -->
-<section class="bg-white border border-black/15 shadow-sm mx-[12px] mb-[12px] p-[16px] rounded-[12px] text-black flex flex-col space-y-[12px] z-20" data-purpose="product-details">
-<!-- 1) Title Row -->
-<div class="flex justify-between items-start font-bold uppercase text-black" data-purpose="title-price-row" style="font-size: 22px; line-height: 1.2;">
-<h1 class="tracking-tight max-w-[240px] text-black">SEPARATE TRACK HOODY</h1>
-<span class="text-black shrink-0 ml-2">R1 299</span>
-</div>
-<!-- 2) Colour Name -->
-<div class="text-[16px] leading-tight text-black" data-purpose="color-name">
-Beige
-</div>
-<!-- 3) Colour Thumbnails -->
-<div class="flex items-center space-x-[8px]" data-purpose="color-swatches">
-<!-- Swatch 1: Beige (Selected, 2px solid black border) -->
-<button aria-label="Select Beige" class="w-[64px] h-[64px] bg-[#E8DFD3] border-2 border-black sharp-control overflow-hidden focus:outline-none flex items-center justify-center shadow-inner" type="button">
-<img alt="Beige swatch" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNaA0FhkexgvhfdK5gE1INZFTWIrwvC6MKEzbLFrsxK24ye3Ps_H9SbXkvLR_JRFRXygfTNnvIVKJh-VMJgh3-3qhPLEFHE-2JI6ZmnKoqii-mmkrMwbKKBWOnkj-n8-gdpUw9d4CpeRms8kCxT8CV8fc1u9mBKOSJFA59Zwc2UQMic4CqJ6YdHMIqUQRRAlbkCJjayXRupoDTGfs4behbouUGMbpHDyOch3U0Jmc">
-</button>
-<!-- Swatch 2: Alternative Color (Unselected, border-black/30) -->
-<button aria-label="Select Navy" class="w-[64px] h-[64px] bg-[#1E2530] border border-black/30 sharp-control overflow-hidden focus:outline-none flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity" type="button">
-<img alt="Dark swatch" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe0PMXw1xJzTYo0WP2UfPJ0DCbCiBkm9yRkxeW6yHnVbhEB0IGO-QJK3WFXvcUdzdGJdNsyn7DdIRW3YutWCJ-UTss-BtSktJ5CcKCkt-CMs1kAXFTofcJN5hDfpbCTkrRmGc4sLRIRJGMqBTMedvniZtGpJNityPm0_4tjmgU2ftFVy3o8vUWsEUNArsGlwGrXYCcmdRY8uhcdA_QlQOjfegQckLZWbRX0w0KrsI">
-</button>
-</div>
-<!-- 4) Description -->
-<div class="text-[16px] leading-[1.4] text-black space-y-0.5" data-purpose="product-description">
-<p class="">100% cotton.</p>
-<p class="">Panelled pullover top.</p>
-<p class="">Wide silhouette.</p>
-<p class="">Made in Japan.</p>
-</div>
-<!-- 5) Sizing Link -->
-<div data-purpose="sizing-link">
-<a class="text-[14px] underline text-black hover:opacity-70 transition-opacity inline-block" href="#sizing-guide">
-sizing
-</a>
-</div>
-<!-- 6) Size Selector Dropdown -->
-<div class="relative w-full" data-purpose="size-selector">
-<select class="w-full h-[48px] bg-transparent border-2 border-black text-black text-[16px] px-4 pr-10 appearance-none sharp-control focus:ring-0 focus:border-black cursor-pointer">
-<option class="bg-white text-black" value="small">Small</option>
-<option class="bg-white text-black" value="medium">Medium</option>
-<option class="bg-white text-black" value="large">Large</option>
-<option class="bg-white text-black" value="xlarge">X-Large</option>
-</select>
-<!-- Custom Down Arrow Icon -->
-<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-black">
-<svg class="w-4 h-4 stroke-current" fill="none" stroke-width="2.5" viewBox="0 0 24 24">
-<path d="M19.5 8.25l-7.5 7.5-7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
-</svg>
-</div>
-</div>
-<!-- 7) Add to Cart Button -->
-<div data-purpose="add-to-cart">
-<button class="w-full h-[48px] bg-black border-2 border-black text-white font-bold text-[16px] sharp-control hover:bg-neutral-800 active:bg-neutral-900 transition-colors flex items-center justify-center uppercase tracking-wider" type="button">
-Add to cart
-</button>
-</div>
-<!-- 8) Navigation Buttons -->
-<div class="flex w-full space-x-[12px]" data-purpose="pagination-controls">
-<!-- Previous Item Button -->
-<button aria-label="Previous item" class="flex-1 h-[44px] bg-transparent border-2 border-black text-black sharp-control hover:bg-black/5 active:bg-black/10 transition-colors flex items-center justify-center text-xl" type="button">
-←
-</button>
-<!-- Next Item Button -->
-<button aria-label="Next item" class="flex-1 h-[44px] bg-transparent border-2 border-black text-black sharp-control hover:bg-black/5 active:bg-black/10 transition-colors flex items-center justify-center text-xl" type="button">
-→
-</button>
-</div>
-</section>
-<!-- END: Details Card -->
+<body>
+
+<main class="mobile-canvas">
+  <!-- Header -->
+  <header class="floating-header">
+    <button type="button" class="icon-btn" aria-label="Back">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    <button type="button" class="icon-btn" aria-label="Shopping Bag">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <path d="M16 10a4 4 0 0 1-8 0"></path>
+      </svg>
+    </button>
+  </header>
+
+  <!-- Photo Area -->
+  <section class="photo-section">
+    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEtvgt8Qy1-HewEBX99sSOIiXwXRTB_-OyDGItf7IbVNAUEf2K1fkAR6WUCq6KYHB6GO2YeqDLChY5yZSOukQb6c3kD9e_1niue9cQDjw-vMEXEM_6fZIA6PfZYoMwU6KrxyNRHPX4AMlHRNMzIj3XeejD5lGiawhiT0sBFnhdZPETDxNfPtip5XBd75l8yms3Eo1ZnaC5LXJR2eMDALGddTGjuGbEOF_q8s9K3OE" alt="SEPARATE TRACK HOODY">
+    <button type="button" class="right-chevron" aria-label="Next Photo">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+  </section>
+
+  <!-- Details Card -->
+  <article class="details-card">
+    <div class="title-row">
+      <h1>SEPARATE TRACK HOODY</h1>
+      <span>R1 299</span>
+    </div>
+
+    <div class="color-label">Beige</div>
+
+    <div class="swatches-row">
+      <button type="button" class="swatch-btn active" aria-label="Beige Swatch">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEtvgt8Qy1-HewEBX99sSOIiXwXRTB_-OyDGItf7IbVNAUEf2K1fkAR6WUCq6KYHB6GO2YeqDLChY5yZSOukQb6c3kD9e_1niue9cQDjw-vMEXEM_6fZIA6PfZYoMwU6KrxyNRHPX4AMlHRNMzIj3XeejD5lGiawhiT0sBFnhdZPETDxNfPtip5XBd75l8yms3Eo1ZnaC5LXJR2eMDALGddTGjuGbEOF_q8s9K3OE" alt="Beige">
+      </button>
+    </div>
+
+    <div class="description-text">
+      <p>100% cotton.</p>
+      <p>Panelled pullover top.</p>
+      <p>Wide silhouette.</p>
+      <p>Made in Japan.</p>
+    </div>
+
+    <div>
+      <button type="button" class="sizing-link">sizing</button>
+    </div>
+
+    <select class="size-dropdown" aria-label="Select size">
+      <option value="S">Small</option>
+      <option value="M">Medium</option>
+      <option value="L">Large</option>
+      <option value="XL">X-Large</option>
+    </select>
+
+    <button type="button" class="add-to-cart-btn">Add to cart</button>
+
+    <div class="nav-arrows-row">
+      <button type="button" class="nav-arrow-btn" aria-label="Previous product">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+      </button>
+      <button type="button" class="nav-arrow-btn" aria-label="Next product">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
+    </div>
+  </article>
 </main>
-<!-- END: Mobile Container -->
 
-
-</body></html>
+</body>
+</html>

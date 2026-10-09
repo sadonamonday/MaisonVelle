@@ -1,137 +1,316 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>SEPARATE TRACK HOODY - Product Detail</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<style data-purpose="base-tokens">
-    body {
-      background-color: #8E2B1C;
-      font-family: Arial, Helvetica, sans-serif;
-      color: #FFFFFF;
-      margin: 0;
-      padding: 0;
-      -webkit-font-smoothing: antialiased;
-    }
-  </style>
-<style data-purpose="glassmorphism-components">
-    /* Floating Header Styling */
-    .floating-header-glass {
-      background: rgba(0, 0, 0, 0.35);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-radius: 12px;
-      height: 56px;
-    }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEPARATE TRACK HOODY - Sold Out State</title>
+<!-- Google Fonts: IBM Plex Mono -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --font-mono: 'IBM Plex Mono', monospace;
+    --font-panel: Arial, 'Helvetica Neue', sans-serif;
+    --font-size-base: 16px;
+    --line-height-base: 24px;
+    --color-bg: #8E2B1C;
+    --color-text: #FFFFFF;
+    --btn-border: 2px solid #FFFFFF;
+  }
 
-    /* Bottom Info Card Glass Container */
-    .details-card-glass {
-      background: rgba(0, 0, 0, 0.35);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-radius: 12px;
-    }
-  </style>
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    justify-content: center;
+  }
+
+  .mobile-canvas {
+    width: 390px;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 16px;
+  }
+
+  /* Floating Header */
+  .floating-header {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    height: 56px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+  }
+
+  .icon-btn {
+    background: transparent;
+    border: none;
+    color: var(--color-text);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+  }
+
+  /* Photo Section */
+  .photo-section {
+    width: 390px;
+    height: 500px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .photo-section img {
+    max-width: 320px;
+    max-height: 380px;
+    object-fit: contain;
+  }
+
+  .right-chevron {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: var(--color-text);
+    cursor: pointer;
+  }
+
+  /* Details Card */
+  .details-card {
+    margin: 0 12px 12px;
+    padding: 16px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: var(--font-panel);
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .color-label {
+    font-size: var(--font-size-base);
+  }
+
+  .swatches-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .swatch-btn {
+    width: 64px;
+    height: 64px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: transparent;
+    cursor: pointer;
+    border-radius: 0;
+    padding: 2px;
+  }
+
+  .swatch-btn.active {
+    border: 2px solid var(--color-text);
+  }
+
+  .swatch-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .description-text {
+    display: flex;
+    flex-direction: column;
+    font-size: var(--font-size-base);
+    line-height: 1.4;
+  }
+
+  .sizing-link {
+    font-size: 14px;
+    text-decoration: underline;
+    color: var(--color-text);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    text-align: left;
+  }
+
+  .size-dropdown {
+    width: 100%;
+    height: 48px;
+    background: transparent;
+    border: var(--btn-border);
+    color: var(--color-text);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-base);
+    padding: 0 16px;
+    border-radius: 0;
+    appearance: none;
+  }
+
+  .size-dropdown option {
+    background-color: #ffffff;
+    color: #000000;
+  }
+
+  /* Sold Out button state: solid white button, bold black text, disabled */
+  .sold-out-btn {
+    width: 100%;
+    height: 48px;
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+    border: none !important;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: var(--font-size-base);
+    text-transform: none;
+    border-radius: 0;
+    cursor: not-allowed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-arrows-row {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .nav-arrow-btn {
+    flex: 1;
+    height: 44px;
+    background: transparent;
+    border: var(--btn-border);
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0;
+    cursor: pointer;
+  }
+</style>
 </head>
+<body>
 
-<!-- BEGIN: MainContainer -->
-<!-- Constrained mobile iOS layout container: 390px width -->
-<body><main class="w-[390px] min-h-screen flex flex-col relative pb-3 overflow-hidden bg-white" data-purpose="mobile-product-container">
-<!-- BEGIN: FloatingHeader -->
-<!-- Floating header bar placed 12px from top and sides -->
-<header class="absolute top-3 left-3 right-3 z-20 floating-header-glass flex items-center justify-between px-4" data-purpose="floating-header">
-<!-- Back arrow navigation link -->
-<a aria-label="Back" class="text-black hover:opacity-80 transition-opacity flex items-center justify-center p-1" href="#">
-<svg class="w-6 h-6 stroke-black stroke-[1.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-<path d="M15.75 19.5L8.25 12l7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
-</svg>
-</a>
-<!-- Shopping bag icon -->
-<a aria-label="Shopping Bag" class="text-black hover:opacity-80 transition-opacity flex items-center justify-center p-1" href="#">
-<svg class="w-6 h-6 stroke-black stroke-[1.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-<path d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25c-.67 0-1.19-.578-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z" stroke-linecap="round" stroke-linejoin="round"></path>
-</svg>
-</a>
-</header>
-<!-- END: FloatingHeader -->
-<!-- BEGIN: ProductPhotoArea -->
-<!-- Full-width product photo area: 390px wide by 500px tall -->
-<section class="relative w-[390px] h-[500px] flex items-center justify-center shrink-0" data-purpose="product-image-viewer">
-<!-- Cream/Beige hoodie cut-out cleanly centred -->
-<img alt="SEPARATE TRACK HOODY - Beige" class="w-[340px] h-[440px] object-contain drop-shadow-md z-0" data-purpose="product-display-photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFrjh7coPD6tOYHrYYiRlNLmrcR76fddMBNwaQkvoONqpkUbzeNjGztYkig7OQeQ-b7sp0SMhCH2FI5AweTKJ13YHfqxyLvctLL00-DqfoAMj_g0tYNB1BXDKPO2pgtXnzfH3wT3hMMlGl1QBPoyNpuCNBLSdWEx7D48ThUcAErE2NhzJWTTtI9F3L_IHnNd3Aejn_jCbW03ToNF6D1r8T9u5lc22hv5LOJrijCpo">
-<!-- Right chevron navigation arrow -->
-<button aria-label="Next image" class="absolute right-4 top-1/2 -translate-y-1/2 z-10 text-black hover:opacity-75 transition-opacity" type="button">
-<svg class="w-6 h-6 stroke-black stroke-[1.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-<path d="M8.25 4.5l7.5 7.5-7.5 7.5" stroke-linecap="round" stroke-linejoin="round"></path>
-</svg>
-</button>
-</section>
-<!-- END: ProductPhotoArea -->
-<!-- BEGIN: DetailsCard -->
-<!-- Bottom product information card with translucent blurred light backdrop -->
-<article class="mx-3 mb-3 p-4 flex flex-col gap-3 text-black bg-white border-2 border-black" data-purpose="product-details-sheet">
-<!-- 1) Title row: Title on left, price on right -->
-<div class="flex items-baseline justify-between w-full gap-3" data-purpose="title-price-row">
-<h1 class="text-[22px] font-bold tracking-tight uppercase text-black">SEPARATE TRACK HOODY</h1>
-<span class="text-[22px] font-bold text-black">R1 299</span>
-</div>
-<!-- 2) Colour name -->
-<div class="text-[16px] leading-tight text-black" data-purpose="color-label">
-        Beige
-      </div>
-<!-- 3) Colour thumbnails: 2 square swatches (64px each, 8px apart) -->
-<div class="flex items-center gap-2" data-purpose="color-swatches">
-<!-- Swatch 1: Beige (Selected, 2px solid black border) -->
-<button aria-label="Select Beige" class="w-16 h-16 bg-[#e5decf] border-2 border-black rounded-none cursor-pointer focus:outline-none transition-transform hover:scale-105" type="button"></button>
-<!-- Swatch 2: Alternative color (Unselected, faint border) -->
-<button aria-label="Select Charcoal" class="w-16 h-16 bg-[#262626] border border-gray-300 rounded-none cursor-pointer focus:outline-none transition-transform hover:scale-105" type="button"></button>
-</div>
-<!-- 4) Description: Four distinct lines -->
-<div class="text-[16px] leading-relaxed flex flex-col gap-0.5 text-black" data-purpose="product-specs">
-<p class="">100% cotton.</p>
-<p class="">Panelled pullover top.</p>
-<p class="">Wide silhouette.</p>
-<p class="">Made in Japan.</p>
-</div>
-<!-- 5) Sizing link -->
-<div>
-<a class="text-[14px] underline text-black hover:opacity-80 transition-opacity" data-purpose="sizing-link" href="#sizing">sizing</a>
-</div>
-<!-- 6) Size selector: 48px high, 2px solid black border, square corners -->
-<div class="relative w-full" data-purpose="size-selector-wrapper">
-<select class="w-full h-12 bg-transparent text-black border-2 border-black rounded-none px-4 text-base font-normal appearance-none focus:outline-none focus:ring-0 focus:border-black cursor-pointer" data-purpose="size-dropdown">
-<option class="bg-white text-black" value="small">Small</option>
-<option class="bg-white text-black" value="medium">Medium</option>
-<option class="bg-white text-black" value="large">Large</option>
-<option class="bg-white text-black" value="xlarge">X-Large</option>
-</select>
-<!-- Downward chevron icon -->
-<div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-black">
-<svg class="w-5 h-5 stroke-black stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-<path d="M19.5 8.25l-7.5 7.5-7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
-</svg>
-</div>
-</div>
-<!-- 7) Sold out Button: Solid black fill, bold white text, 48px high, square corners -->
-<button class="w-full h-12 bg-black text-white font-bold text-base rounded-none border-none flex items-center justify-center cursor-not-allowed select-none transition-opacity" data-purpose="sold-out-button" disabled="" type="button">
-        Sold out
+<main class="mobile-canvas">
+  <!-- Header -->
+  <header class="floating-header">
+    <button type="button" class="icon-btn" aria-label="Back">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    <button type="button" class="icon-btn" aria-label="Shopping Bag">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <path d="M16 10a4 4 0 0 1-8 0"></path>
+      </svg>
+    </button>
+  </header>
+
+  <!-- Photo Area -->
+  <section class="photo-section">
+    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEtvgt8Qy1-HewEBX99sSOIiXwXRTB_-OyDGItf7IbVNAUEf2K1fkAR6WUCq6KYHB6GO2YeqDLChY5yZSOukQb6c3kD9e_1niue9cQDjw-vMEXEM_6fZIA6PfZYoMwU6KrxyNRHPX4AMlHRNMzIj3XeejD5lGiawhiT0sBFnhdZPETDxNfPtip5XBd75l8yms3Eo1ZnaC5LXJR2eMDALGddTGjuGbEOF_q8s9K3OE" alt="SEPARATE TRACK HOODY">
+    <button type="button" class="right-chevron" aria-label="Next Photo">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+  </section>
+
+  <!-- Details Card -->
+  <article class="details-card">
+    <div class="title-row">
+      <h1>SEPARATE TRACK HOODY</h1>
+      <span>R1 299</span>
+    </div>
+
+    <div class="color-label">Beige</div>
+
+    <div class="swatches-row">
+      <button type="button" class="swatch-btn active" aria-label="Beige Swatch">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEtvgt8Qy1-HewEBX99sSOIiXwXRTB_-OyDGItf7IbVNAUEf2K1fkAR6WUCq6KYHB6GO2YeqDLChY5yZSOukQb6c3kD9e_1niue9cQDjw-vMEXEM_6fZIA6PfZYoMwU6KrxyNRHPX4AMlHRNMzIj3XeejD5lGiawhiT0sBFnhdZPETDxNfPtip5XBd75l8yms3Eo1ZnaC5LXJR2eMDALGddTGjuGbEOF_q8s9K3OE" alt="Beige">
       </button>
-<!-- 8) Navigation buttons: Two side-by-side buttons, 12px apart, 44px high, 2px black border -->
-<nav aria-label="Product navigation" class="grid grid-cols-2 gap-3 w-full" data-purpose="product-nav-buttons">
-<button aria-label="Previous product" class="w-full h-[44px] bg-transparent border-2 border-black rounded-none flex items-center justify-center text-black hover:bg-black/5 active:bg-black/10 transition-colors" type="button">
-<svg class="w-6 h-6 stroke-black stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-<path d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" stroke-linecap="round" stroke-linejoin="round"></path>
-</svg>
-</button>
-<button aria-label="Next product" class="w-full h-[44px] bg-transparent border-2 border-black rounded-none flex items-center justify-center text-black hover:bg-black/5 active:bg-black/10 transition-colors" type="button">
-<svg class="w-6 h-6 stroke-black stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-<path d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" stroke-linecap="round" stroke-linejoin="round"></path>
-</svg>
-</button>
-</nav>
-</article>
-<!-- END: DetailsCard -->
+    </div>
+
+    <div class="description-text">
+      <p>100% cotton.</p>
+      <p>Panelled pullover top.</p>
+      <p>Wide silhouette.</p>
+      <p>Made in Japan.</p>
+    </div>
+
+    <div>
+      <button type="button" class="sizing-link">sizing</button>
+    </div>
+
+    <select class="size-dropdown" aria-label="Select size">
+      <option value="S">Small</option>
+      <option value="M">Medium</option>
+      <option value="L">Large</option>
+      <option value="XL">X-Large</option>
+    </select>
+
+    <!-- Sold out state: solid white button, bold black text -->
+    <button type="button" class="sold-out-btn" disabled>Sold out</button>
+
+    <div class="nav-arrows-row">
+      <button type="button" class="nav-arrow-btn" aria-label="Previous product">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+      </button>
+      <button type="button" class="nav-arrow-btn" aria-label="Next product">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
+    </div>
+  </article>
 </main>
-<!-- END: MainContainer -->
 
-
-</body></html>
+</body>
+</html>

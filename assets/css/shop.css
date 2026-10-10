@@ -1,0 +1,108 @@
+.main-content {
+  width: 100%;
+  max-width: 1440px;
+  padding: calc(var(--header-height) + 32px) var(--page-padding) 0;
+  flex: 1;
+}
+
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  column-gap: var(--grid-gap-x);
+  row-gap: var(--grid-gap-y);
+  width: 100%;
+}
+
+.shop-grid.cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.product-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+.image-wrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg);
+  overflow: hidden;
+}
+
+.image-wrapper img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.product-info {
+  margin-top: 8px;
+  text-align: center;
+}
+
+.product-sku, .product-price {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--color-text);
+}
+
+/* Mobile Feed View */
+.feed-view {
+  display: none;
+  width: 100%;
+  height: calc(100dvh - var(--header-height));
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+.feed-slide {
+  width: 100%;
+  height: calc(100dvh - var(--header-height));
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+.feed-image-wrapper {
+  width: 100%;
+  max-width: 390px;
+  height: 390px;
+  margin: auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feed-image-wrapper img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.feed-info {
+  text-align: center;
+  padding-bottom: 48px;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding-top: calc(var(--header-height) + 16px);
+  }
+
+  .shop-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

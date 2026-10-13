@@ -149,24 +149,53 @@
       });
     }
 
+    // Add to Cart trigger
+    const addToCartBtn = document.getElementById('add-to-cart-btn');
+    if (addToCartBtn) {
+      addToCartBtn.addEventListener('click', function() {
+        const p = products[currentProdIdx];
+        const v = p.variants[currentVarIdx];
+        if (!v.inStock || addToCartBtn.disabled) return;
+
+        const origText = addToCartBtn.textContent;
+        addToCartBtn.textContent = 'ADDED!';
+
+        const bagBtn = document.getElementById('bag-btn');
+        if (bagBtn) bagBtn.click();
+
+        setTimeout(() => {
+          if (!addToCartBtn.disabled) {
+            addToCartBtn.textContent = origText;
+          }
+        }, 1500);
+      });
+    }
+
     // Sizing Modal trigger
     const sizingTrigger = document.getElementById('sizing-modal-trigger');
     if (sizingTrigger) {
       sizingTrigger.addEventListener('click', function() {
         const modal = document.getElementById('size-modal');
-        if (modal) modal.classList.add('open');
+        if (modal) {
+          modal.classList.add('open');
+          modal.setAttribute('aria-hidden', 'false');
+          const closeBtn = document.getElementById('size-modal-close');
+          if (closeBtn) closeBtn.focus();
+        }
       });
     }
 
     // Modal close inside partial
     document.addEventListener('click', function(e) {
-      if (e.target.id === 'size-modal-close' || e.target.closest('#size-modal-close')) {
-        const modal = document.getElementById('size-modal');
-        if (modal) modal.classList.remove('open');
-      }
       const modal = document.getElementById('size-modal');
-      if (modal && e.target === modal) {
+      if (!modal) return;
+
+      if (e.target.id === 'size-modal-close' || e.target.closest('#size-modal-close') || e.target === modal) {
         modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+        if (sizingTrigger && document.activeElement && modal.contains(document.activeElement)) {
+          sizingTrigger.focus();
+        }
       }
     });
 

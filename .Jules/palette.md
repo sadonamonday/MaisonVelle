@@ -1,0 +1,3 @@
+## 2026-10-13 - Focus and ARIA State Management with Dynamic HTML Partials
+**Learning:** In applications using fetch-based dynamic partial loading, ARIA control relationships (like `aria-controls` and `aria-expanded` on header elements targeting drawer partials) must be synchronized when partials load and updated dynamically on state transitions to keep screen readers aware of overlay visibility and trap/restore keyboard focus properly.
+**Action:** Ensure dynamic overlay triggers update `aria-expanded` and `aria-hidden` attributes in tandem with CSS class toggles, and shift focus to close buttons upon overlay open and back to trigger upon overlay close.

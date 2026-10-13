@@ -3,10 +3,19 @@ document.addEventListener('keydown', function(e) {
     const cartOverlay = document.getElementById('cart-drawer-overlay');
     if (cartOverlay && cartOverlay.classList.contains('open')) {
       cartOverlay.classList.remove('open');
+      cartOverlay.setAttribute('aria-hidden', 'true');
+      const bagBtn = document.getElementById('bag-btn');
+      if (bagBtn) {
+        bagBtn.setAttribute('aria-expanded', 'false');
+        bagBtn.focus();
+      }
     }
     const sizeModal = document.getElementById('size-modal');
     if (sizeModal && sizeModal.classList.contains('open')) {
       sizeModal.classList.remove('open');
+      sizeModal.setAttribute('aria-hidden', 'true');
+      const sizingTrigger = document.getElementById('sizing-modal-trigger');
+      if (sizingTrigger) sizingTrigger.focus();
     }
   }
 });

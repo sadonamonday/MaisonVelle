@@ -179,6 +179,7 @@
         if (modal) {
           modal.classList.add('open');
           modal.setAttribute('aria-hidden', 'false');
+          sizingTrigger.setAttribute('aria-expanded', 'true');
           const closeBtn = document.getElementById('size-modal-close');
           if (closeBtn) closeBtn.focus();
         }
@@ -193,8 +194,30 @@
       if (e.target.id === 'size-modal-close' || e.target.closest('#size-modal-close') || e.target === modal) {
         modal.classList.remove('open');
         modal.setAttribute('aria-hidden', 'true');
-        if (sizingTrigger && document.activeElement && modal.contains(document.activeElement)) {
-          sizingTrigger.focus();
+        if (sizingTrigger) {
+          sizingTrigger.setAttribute('aria-expanded', 'false');
+          if (document.activeElement && modal.contains(document.activeElement)) {
+            sizingTrigger.focus();
+          }
+        }
+      }
+    });
+
+    // Focus trap for Size Guide modal
+    document.addEventListener('keydown', function(e) {
+      const modal = document.getElementById('size-modal');
+      if (!modal || !modal.classList.contains('open')) return;
+      if (e.key === 'Tab') {
+        const focusables = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        if (!focusables.length) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
         }
       }
     });

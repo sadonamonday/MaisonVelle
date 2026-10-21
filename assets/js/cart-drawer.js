@@ -25,6 +25,32 @@ function initCartDrawer() {
 
   bagBtns.forEach(btn => btn.addEventListener('click', openDrawer));
 
+  cartOverlay.addEventListener('keydown', function(e) {
+    if (e.key !== 'Tab' || !cartOverlay.classList.contains('open')) return;
+
+    const focusableSelector = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+    const focusables = Array.from(cartOverlay.querySelectorAll(focusableSelector)).filter(
+      el => !el.disabled && el.getAttribute('tabindex') !== '-1' && el.offsetParent !== null
+    );
+
+    if (focusables.length === 0) return;
+
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+
+    if (e.shiftKey) {
+      if (document.activeElement === first || !cartOverlay.contains(document.activeElement)) {
+        e.preventDefault();
+        last.focus();
+      }
+    } else {
+      if (document.activeElement === last || !cartOverlay.contains(document.activeElement)) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
   function updateCartTotals() {
     const items = cartOverlay.querySelectorAll('.cart-item');
     const cartCountEl = document.getElementById('cart-count');

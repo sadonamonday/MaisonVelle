@@ -199,13 +199,46 @@
       }
     });
 
+    // Modal focus trap for keyboard navigation
+    document.addEventListener('keydown', function(e) {
+      const modal = document.getElementById('size-modal');
+      if (!modal || !modal.classList.contains('open')) return;
+
+      if (e.key === 'Tab') {
+        const focusables = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        if (focusables.length === 0) return;
+
+        const firstFocusable = focusables[0];
+        const lastFocusable = focusables[focusables.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === firstFocusable || !modal.contains(document.activeElement)) {
+            e.preventDefault();
+            lastFocusable.focus();
+          }
+        } else {
+          if (document.activeElement === lastFocusable || !modal.contains(document.activeElement)) {
+            e.preventDefault();
+            firstFocusable.focus();
+          }
+        }
+      }
+    });
+
     updateProductDisplay();
   }
 
-  document.addEventListener('partialsLoaded', initProductListeners);
+  let initialized = false;
+  function safeInitProductListeners() {
+    if (initialized) return;
+    initialized = true;
+    initProductListeners();
+  }
+
+  document.addEventListener('partialsLoaded', safeInitProductListeners);
   document.addEventListener('DOMContentLoaded', function() {
     if (document.getElementById('p-title')) {
-      initProductListeners();
+      safeInitProductListeners();
     }
   });
 })();

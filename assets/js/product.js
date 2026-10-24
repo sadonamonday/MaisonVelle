@@ -89,16 +89,26 @@
     const swatchContainer = document.getElementById('p-swatches');
     if (swatchContainer) {
       swatchContainer.innerHTML = p.variants.map((vItem, idx) => `
-        <button type="button" class="swatch-btn ${idx === currentVarIdx ? 'active' : ''}" data-vidx="${idx}" aria-label="${vItem.colorName}">
+        <button type="button" class="swatch-btn ${idx === currentVarIdx ? 'active' : ''}" data-vidx="${idx}" aria-label="${vItem.colorName}" ${idx === currentVarIdx ? 'aria-pressed="true"' : 'aria-pressed="false"'}>
           <img src="${vItem.swatchImg}" alt="${vItem.colorName}">
         </button>
       `).join('');
 
       swatchContainer.querySelectorAll('.swatch-btn').forEach(btn => {
         btn.addEventListener('click', function() {
-          currentVarIdx = parseInt(this.dataset.vidx);
-          currentImgIdx = 0;
-          updateProductDisplay();
+          const newIdx = parseInt(this.dataset.vidx);
+          if (newIdx !== currentVarIdx) {
+            currentVarIdx = newIdx;
+            currentImgIdx = 0;
+            updateProductDisplay();
+
+            const statusEl = document.getElementById('cart-status');
+            if (statusEl) {
+              const selectedVariant = p.variants[currentVarIdx];
+              const stockStatus = selectedVariant.inStock ? '' : ' (Out of stock)';
+              statusEl.textContent = `Selected color: ${selectedVariant.colorName}${stockStatus}`;
+            }
+          }
         });
       });
     }
@@ -157,8 +167,17 @@
         const v = p.variants[currentVarIdx];
         if (!v.inStock || addToCartBtn.disabled) return;
 
+        const sizeSelect = document.querySelector('.size-select');
+        const selectedSize = sizeSelect ? sizeSelect.value : '';
+
         const origText = addToCartBtn.textContent;
         addToCartBtn.textContent = 'ADDED!';
+
+        const statusEl = document.getElementById('cart-status');
+        if (statusEl) {
+          const sizeMsg = selectedSize ? ` (Size: ${selectedSize})` : '';
+          statusEl.textContent = `Added ${p.title} - ${v.colorName}${sizeMsg} to bag`;
+        }
 
         const bagBtn = document.getElementById('bag-btn');
         if (bagBtn) bagBtn.click();

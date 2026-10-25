@@ -179,6 +179,7 @@
         if (modal) {
           modal.classList.add('open');
           modal.setAttribute('aria-hidden', 'false');
+          sizingTrigger.setAttribute('aria-expanded', 'true');
           const closeBtn = document.getElementById('size-modal-close');
           if (closeBtn) closeBtn.focus();
         }
@@ -193,8 +194,11 @@
       if (e.target.id === 'size-modal-close' || e.target.closest('#size-modal-close') || e.target === modal) {
         modal.classList.remove('open');
         modal.setAttribute('aria-hidden', 'true');
-        if (sizingTrigger && document.activeElement && modal.contains(document.activeElement)) {
-          sizingTrigger.focus();
+        if (sizingTrigger) {
+          sizingTrigger.setAttribute('aria-expanded', 'false');
+          if (document.activeElement && modal.contains(document.activeElement)) {
+            sizingTrigger.focus();
+          }
         }
       }
     });

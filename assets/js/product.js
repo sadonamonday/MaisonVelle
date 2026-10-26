@@ -72,7 +72,7 @@
     const thumbStrip = document.getElementById('thumbnail-strip');
     if (thumbStrip) {
       thumbStrip.innerHTML = v.images.map((img, idx) => `
-        <button type="button" class="thumb-btn ${idx === currentImgIdx ? 'active' : ''}" data-idx="${idx}" aria-label="Thumbnail ${idx + 1}">
+        <button type="button" class="thumb-btn ${idx === currentImgIdx ? 'active' : ''}" data-idx="${idx}" aria-label="Thumbnail ${idx + 1}" ${idx === currentImgIdx ? 'aria-current="true"' : ''}>
           <img src="${img}" alt="Thumbnail ${idx + 1}">
         </button>
       `).join('');
@@ -88,8 +88,9 @@
     // Render Swatches
     const swatchContainer = document.getElementById('p-swatches');
     if (swatchContainer) {
+      swatchContainer.setAttribute('aria-label', 'Color swatches');
       swatchContainer.innerHTML = p.variants.map((vItem, idx) => `
-        <button type="button" class="swatch-btn ${idx === currentVarIdx ? 'active' : ''}" data-vidx="${idx}" aria-label="${vItem.colorName}">
+        <button type="button" class="swatch-btn ${idx === currentVarIdx ? 'active' : ''}" data-vidx="${idx}" aria-label="${vItem.colorName}" aria-pressed="${idx === currentVarIdx ? 'true' : 'false'}">
           <img src="${vItem.swatchImg}" alt="${vItem.colorName}">
         </button>
       `).join('');
@@ -160,6 +161,11 @@
         const origText = addToCartBtn.textContent;
         addToCartBtn.textContent = 'ADDED!';
 
+        const statusEl = document.getElementById('cart-status');
+        if (statusEl) {
+          statusEl.textContent = `${p.title} (${v.colorName}) added to bag`;
+        }
+
         const bagBtn = document.getElementById('bag-btn');
         if (bagBtn) bagBtn.click();
 
@@ -179,6 +185,7 @@
         if (modal) {
           modal.classList.add('open');
           modal.setAttribute('aria-hidden', 'false');
+          sizingTrigger.setAttribute('aria-expanded', 'true');
           const closeBtn = document.getElementById('size-modal-close');
           if (closeBtn) closeBtn.focus();
         }
@@ -193,8 +200,11 @@
       if (e.target.id === 'size-modal-close' || e.target.closest('#size-modal-close') || e.target === modal) {
         modal.classList.remove('open');
         modal.setAttribute('aria-hidden', 'true');
-        if (sizingTrigger && document.activeElement && modal.contains(document.activeElement)) {
-          sizingTrigger.focus();
+        if (sizingTrigger) {
+          sizingTrigger.setAttribute('aria-expanded', 'false');
+          if (document.activeElement && modal.contains(document.activeElement)) {
+            sizingTrigger.focus();
+          }
         }
       }
     });

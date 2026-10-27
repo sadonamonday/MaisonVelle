@@ -1,4 +1,6 @@
 document.addEventListener('keydown', function(e) {
+  const activeOverlay = document.querySelector('.cart-drawer-overlay.open, .modal-overlay.open');
+
   if (e.key === 'Escape' || e.key === 'Esc') {
     const cartOverlay = document.getElementById('cart-drawer-overlay');
     if (cartOverlay && cartOverlay.classList.contains('open')) {
@@ -15,7 +17,36 @@ document.addEventListener('keydown', function(e) {
       sizeModal.classList.remove('open');
       sizeModal.setAttribute('aria-hidden', 'true');
       const sizingTrigger = document.getElementById('sizing-modal-trigger');
-      if (sizingTrigger) sizingTrigger.focus();
+      if (sizingTrigger) {
+        sizingTrigger.setAttribute('aria-expanded', 'false');
+        sizingTrigger.focus();
+      }
+    }
+    return;
+  }
+
+  if (e.key === 'Tab' && activeOverlay) {
+    const focusables = Array.from(
+      activeOverlay.querySelectorAll(
+        'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      )
+    ).filter(el => el.offsetWidth > 0 || el.offsetHeight > 0 || el === document.activeElement);
+
+    if (focusables.length === 0) return;
+
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+
+    if (e.shiftKey) {
+      if (document.activeElement === first || !activeOverlay.contains(document.activeElement)) {
+        e.preventDefault();
+        last.focus();
+      }
+    } else {
+      if (document.activeElement === last || !activeOverlay.contains(document.activeElement)) {
+        e.preventDefault();
+        first.focus();
+      }
     }
   }
 });
@@ -27,8 +58,12 @@ function initHeaderNav() {
       if (this.getAttribute('href') === '#') {
         e.preventDefault();
       }
-      categoryLinks.forEach(l => l.classList.remove('active'));
+      categoryLinks.forEach(l => {
+        l.classList.remove('active');
+        l.removeAttribute('aria-current');
+      });
       this.classList.add('active');
+      this.setAttribute('aria-current', 'page');
     });
   });
 

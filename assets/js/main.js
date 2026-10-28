@@ -27,8 +27,12 @@ function initHeaderNav() {
       if (this.getAttribute('href') === '#') {
         e.preventDefault();
       }
-      categoryLinks.forEach(l => l.classList.remove('active'));
+      categoryLinks.forEach(l => {
+        l.classList.remove('active');
+        l.removeAttribute('aria-current');
+      });
       this.classList.add('active');
+      this.setAttribute('aria-current', 'page');
     });
   });
 

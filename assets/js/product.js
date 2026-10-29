@@ -72,7 +72,7 @@
     const thumbStrip = document.getElementById('thumbnail-strip');
     if (thumbStrip) {
       thumbStrip.innerHTML = v.images.map((img, idx) => `
-        <button type="button" class="thumb-btn ${idx === currentImgIdx ? 'active' : ''}" data-idx="${idx}" aria-label="Thumbnail ${idx + 1}">
+        <button type="button" class="thumb-btn ${idx === currentImgIdx ? 'active' : ''}" data-idx="${idx}" aria-label="Thumbnail ${idx + 1}" aria-pressed="${idx === currentImgIdx}">
           <img src="${img}" alt="Thumbnail ${idx + 1}">
         </button>
       `).join('');
@@ -85,11 +85,17 @@
       });
     }
 
+    // Next Photo Chevron visibility
+    const nextPhotoBtn = document.getElementById('next-photo-btn');
+    if (nextPhotoBtn) {
+      nextPhotoBtn.style.display = v.images.length > 1 ? 'inline-flex' : 'none';
+    }
+
     // Render Swatches
     const swatchContainer = document.getElementById('p-swatches');
     if (swatchContainer) {
       swatchContainer.innerHTML = p.variants.map((vItem, idx) => `
-        <button type="button" class="swatch-btn ${idx === currentVarIdx ? 'active' : ''}" data-vidx="${idx}" aria-label="${vItem.colorName}">
+        <button type="button" class="swatch-btn ${idx === currentVarIdx ? 'active' : ''}" data-vidx="${idx}" aria-label="${vItem.colorName}" aria-pressed="${idx === currentVarIdx}">
           <img src="${vItem.swatchImg}" alt="${vItem.colorName}">
         </button>
       `).join('');
@@ -159,6 +165,11 @@
 
         const origText = addToCartBtn.textContent;
         addToCartBtn.textContent = 'ADDED!';
+
+        const statusEl = document.getElementById('cart-status');
+        if (statusEl) {
+          statusEl.textContent = `${p.title} (${v.colorName}) added to bag`;
+        }
 
         const bagBtn = document.getElementById('bag-btn');
         if (bagBtn) bagBtn.click();

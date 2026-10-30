@@ -1,4 +1,6 @@
 document.addEventListener('keydown', function(e) {
+  const activeOverlay = document.querySelector('.cart-drawer-overlay.open, .modal-overlay.open');
+
   if (e.key === 'Escape' || e.key === 'Esc') {
     const cartOverlay = document.getElementById('cart-drawer-overlay');
     if (cartOverlay && cartOverlay.classList.contains('open')) {
@@ -16,6 +18,24 @@ document.addEventListener('keydown', function(e) {
       sizeModal.setAttribute('aria-hidden', 'true');
       const sizingTrigger = document.getElementById('sizing-modal-trigger');
       if (sizingTrigger) sizingTrigger.focus();
+    }
+    return;
+  }
+
+  if (e.key === 'Tab' && activeOverlay) {
+    const focusables = Array.from(
+      activeOverlay.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])')
+    );
+    if (focusables.length === 0) return;
+    const firstEl = focusables[0];
+    const lastEl = focusables[focusables.length - 1];
+
+    if (e.shiftKey && (document.activeElement === firstEl || !activeOverlay.contains(document.activeElement))) {
+      e.preventDefault();
+      lastEl.focus();
+    } else if (!e.shiftKey && (document.activeElement === lastEl || !activeOverlay.contains(document.activeElement))) {
+      e.preventDefault();
+      firstEl.focus();
     }
   }
 });

@@ -105,20 +105,33 @@
 
     // Stock state: Solid black button with white bold text when out of stock
     const addToCartBtn = document.getElementById('add-to-cart-btn');
+    const statusEl = document.getElementById('product-status');
     if (addToCartBtn) {
       if (!v.inStock) {
         addToCartBtn.textContent = 'Sold out';
         addToCartBtn.classList.add('sold-out');
         addToCartBtn.disabled = true;
+        addToCartBtn.setAttribute('aria-disabled', 'true');
+        if (statusEl) statusEl.textContent = `${v.colorName} is sold out.`;
       } else {
         addToCartBtn.textContent = 'Add to cart';
         addToCartBtn.classList.remove('sold-out');
         addToCartBtn.disabled = false;
+        addToCartBtn.removeAttribute('aria-disabled');
+        if (statusEl) statusEl.textContent = `${v.colorName} is in stock.`;
       }
     }
   }
 
   function initProductListeners() {
+    const sizeSelect = document.querySelector('.size-select');
+    if (sizeSelect) {
+      sizeSelect.addEventListener('change', function() {
+        const selectedOption = sizeSelect.options[sizeSelect.selectedIndex]?.text || sizeSelect.value;
+        const statusEl = document.getElementById('product-status');
+        if (statusEl) statusEl.textContent = `Size selected: ${selectedOption}.`;
+      });
+    }
     const nextPhotoBtn = document.getElementById('next-photo-btn');
     if (nextPhotoBtn) {
       nextPhotoBtn.addEventListener('click', function() {

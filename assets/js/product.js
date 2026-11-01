@@ -171,7 +171,7 @@
       });
     }
 
-    // Sizing Modal trigger
+    // Sizing Modal trigger & trapping
     const sizingTrigger = document.getElementById('sizing-modal-trigger');
     if (sizingTrigger) {
       sizingTrigger.addEventListener('click', function() {
@@ -179,13 +179,14 @@
         if (modal) {
           modal.classList.add('open');
           modal.setAttribute('aria-hidden', 'false');
+          sizingTrigger.setAttribute('aria-expanded', 'true');
           const closeBtn = document.getElementById('size-modal-close');
           if (closeBtn) closeBtn.focus();
         }
       });
     }
 
-    // Modal close inside partial
+    // Modal close inside partial & backdrop
     document.addEventListener('click', function(e) {
       const modal = document.getElementById('size-modal');
       if (!modal) return;
@@ -193,9 +194,32 @@
       if (e.target.id === 'size-modal-close' || e.target.closest('#size-modal-close') || e.target === modal) {
         modal.classList.remove('open');
         modal.setAttribute('aria-hidden', 'true');
-        if (sizingTrigger && document.activeElement && modal.contains(document.activeElement)) {
-          sizingTrigger.focus();
+        if (sizingTrigger) {
+          sizingTrigger.setAttribute('aria-expanded', 'false');
+          if (document.activeElement && modal.contains(document.activeElement)) {
+            sizingTrigger.focus();
+          }
         }
+      }
+    });
+
+    // Keyboard focus trap inside modal
+    document.addEventListener('keydown', function(e) {
+      const modal = document.getElementById('size-modal');
+      if (!modal || !modal.classList.contains('open') || e.key !== 'Tab') return;
+
+      const focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      if (focusable.length === 0) return;
+
+      const firstEl = focusable[0];
+      const lastEl = focusable[focusable.length - 1];
+
+      if (e.shiftKey && document.activeElement === firstEl) {
+        e.preventDefault();
+        lastEl.focus();
+      } else if (!e.shiftKey && document.activeElement === lastEl) {
+        e.preventDefault();
+        firstEl.focus();
       }
     });
 

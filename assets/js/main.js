@@ -15,7 +15,10 @@ document.addEventListener('keydown', function(e) {
       sizeModal.classList.remove('open');
       sizeModal.setAttribute('aria-hidden', 'true');
       const sizingTrigger = document.getElementById('sizing-modal-trigger');
-      if (sizingTrigger) sizingTrigger.focus();
+      if (sizingTrigger) {
+        sizingTrigger.setAttribute('aria-expanded', 'false');
+        sizingTrigger.focus();
+      }
     }
   }
 });
